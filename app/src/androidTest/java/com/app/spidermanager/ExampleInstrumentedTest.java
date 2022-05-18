@@ -1,4 +1,4 @@
-package com.example.spidermanager;
+package com.app.spidermanager;
 
 import android.content.Context;
 

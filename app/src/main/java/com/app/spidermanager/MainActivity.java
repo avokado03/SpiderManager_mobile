@@ -1,7 +1,8 @@
-package com.example.spidermanager;
+package com.app.spidermanager;
 
 import android.os.Bundle;
 
+import com.example.spidermanager.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
