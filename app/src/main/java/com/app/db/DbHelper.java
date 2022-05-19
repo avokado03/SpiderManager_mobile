@@ -18,12 +18,10 @@ import java.io.OutputStream;
 public class DbHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "spider.db";
-    public static final String DB_PATH = "data/data/spidermanager/databases/";
     public static final int DB_VERSION = 1;
-    public static final String TB_USER = "Users";
 
     private SQLiteDatabase db;
-    private Context context;
+    private final Context context;
 
     public DbHelper(Context context){
         super(context, DB_NAME, null, DB_VERSION);
@@ -57,17 +55,15 @@ public class DbHelper extends SQLiteOpenHelper {
 
     /**
      * Открывает соединение с БД
-     * @throws SQLException
      */
     public void openDB() throws SQLException{
-        String dbFullPath = DB_PATH+DB_NAME;
+        String dbFullPath = getDbPath();
         db = SQLiteDatabase.openDatabase(dbFullPath, null, SQLiteDatabase.OPEN_READWRITE);
     }
 
     /**
      * Создает файл БД на устройстве,
      * если его еще не существует
-     * @throws IOException
      */
     public void createDb() throws IOException{
         if (!(checkDbExisting())) {
@@ -84,19 +80,18 @@ public class DbHelper extends SQLiteOpenHelper {
     /**
      * Копирует файл БД из ассетов
      * на устройство
-     * @throws IOException
      */
     public void copyDb() throws IOException {
         try {
             InputStream inputStream = context.getAssets().open(DB_NAME);
-            String dbFullName = DB_PATH + DB_NAME;
+            String dbFullName = getDbPath();
             OutputStream outputStream = new FileOutputStream(dbFullName);
 
             byte[] buffer = new byte[1024];
-            int lenght;
+            int length;
 
-            while ((lenght = inputStream.read(buffer)) > 0)
-                outputStream.write(buffer, 0, lenght);
+            while ((length = inputStream.read(buffer)) > 0)
+                outputStream.write(buffer, 0, length);
 
             outputStream.flush();
             outputStream.close();
@@ -108,11 +103,19 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * @return Возвращает
+     * путь к БД
+     */
+    private String getDbPath(){
+        return context.getDatabasePath(DB_NAME).getPath();
+    }
+
+    /**
      * Проверяет наличие созданной БД на устройстве
      */
     private boolean checkDbExisting(){
         SQLiteDatabase temp = null;
-        String dbPath = DB_PATH + DB_NAME;
+        String dbPath = getDbPath();
         try {
             temp = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.OPEN_READWRITE);
         }
