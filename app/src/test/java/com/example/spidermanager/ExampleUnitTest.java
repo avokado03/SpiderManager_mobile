@@ -1,4 +1,4 @@
-package com.app.spidermanager;
+package com.example.spidermanager;
 
 import org.junit.Test;
 
