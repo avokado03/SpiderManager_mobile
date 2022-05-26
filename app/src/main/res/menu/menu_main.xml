@@ -1,9 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.spidermanager.MainActivity">
+    tools:context="com.example.spidermanager.com.app.spidermanager.MainActivity">
     <item
         android:id="@+id/action_settings"
+        android:checkable="false"
+        android:checked="false"
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
