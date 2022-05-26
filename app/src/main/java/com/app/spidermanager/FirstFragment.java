@@ -7,10 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.spidermanager.R;
-import com.example.spidermanager.databinding.FragmentFirstBinding;
+import com.app.spidermanager.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment {
 

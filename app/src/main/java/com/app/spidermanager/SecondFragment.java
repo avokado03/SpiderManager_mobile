@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.spidermanager.R;
-import com.example.spidermanager.databinding.FragmentSecondBinding;
+import com.app.spidermanager.R;
+import com.app.spidermanager.databinding.FragmentSecondBinding;
 
 public class SecondFragment extends Fragment {
 
