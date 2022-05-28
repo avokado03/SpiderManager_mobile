@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
@@ -17,15 +18,19 @@ import com.app.spidermanager.utils.Utils;
 
 import java.util.List;
 
-public class SpiderAdapter extends RecyclerView.Adapter<SpiderAdapter.SpiderViewHolder>{
+public class SpidersAdapter extends RecyclerView.Adapter<SpidersAdapter.SpiderViewHolder>{
+
+    public interface OnSpiderClickListener {
+        void OnClick(SpiderItemModel model, int position);
+    }
 
     private final OnSpiderClickListener onClickListener;
 
     private final LayoutInflater inflater;
     private final List<SpiderItemModel> spiders;
 
-    public SpiderAdapter(Context context,
-                         OnSpiderClickListener onClickListener,  List<SpiderItemModel> spiders) {
+    public SpidersAdapter(Context context,
+                          OnSpiderClickListener onClickListener, List<SpiderItemModel> spiders) {
         this.onClickListener = onClickListener;
         this.spiders = spiders;
         this.inflater = LayoutInflater.from(context);
@@ -42,11 +47,11 @@ public class SpiderAdapter extends RecyclerView.Adapter<SpiderAdapter.SpiderView
     @Override
     public void onBindViewHolder(@NonNull SpiderViewHolder holder, int position) {
         SpiderItemModel current = spiders.get(position);
-        holder.photoView.setImageBitmap(Utils.getBitmapFromArray(
+/*        holder.photoView.setImageBitmap(Utils.getBitmapFromArray(
                 current.getPhoto(),
                 holder.photoView.getWidth(),
                 holder.photoView.getHeight())
-        );
+        );*/
         holder.sexView.setImageDrawable(current.getSex());
         holder.feedingDateView.setText(current.getFeedingDate());
         holder.typeView.setText(current.getType());
