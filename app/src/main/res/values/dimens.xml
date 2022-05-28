@@ -1,4 +1,5 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="list_font_size">7pt</dimen>
+    <dimen name="upd_margin">24dp</dimen>
 </resources>

@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-import com.app.spidermanager.databinding.FragmentSecondBinding;
+import com.app.spidermanager.databinding.UpdSpiderFragmentBinding;
 
-public class SecondFragment extends Fragment {
+public class UpdSpiderFragment extends Fragment {
 
-    private FragmentSecondBinding binding;
+    private UpdSpiderFragmentBinding binding;
 
     @Override
     public View onCreateView(
@@ -20,7 +20,7 @@ public class SecondFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentSecondBinding.inflate(inflater, container, false);
+        binding = UpdSpiderFragmentBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -28,9 +28,9 @@ public class SecondFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonSecond.setOnClickListener(view1 ->
-                NavHostFragment.findNavController(SecondFragment.this)
-                .navigate(R.id.action_SecondFragment_to_SpidersFragment));
+        binding.buttonBack.setOnClickListener(view1 ->
+                NavHostFragment.findNavController(UpdSpiderFragment.this)
+                .navigate(R.id.action_UpdSpiderFragment_to_SpidersFragment));
     }
 
     @Override

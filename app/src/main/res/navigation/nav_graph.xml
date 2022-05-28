@@ -13,17 +13,16 @@
 
         <action
             android:id="@+id/action_SpidersFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/UpdSpiderFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.app.spidermanager.SecondFragment"
+        android:id="@+id/UpdSpiderFragment"
+        android:name="com.app.spidermanager.UpdSpiderFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_second">
-
+        tools:layout="@layout/upd_spider_fragment">
 
         <action
-            android:id="@+id/action_SecondFragment_to_SpidersFragment"
+            android:id="@+id/action_UpdSpiderFragment_to_SpidersFragment"
             app:destination="@id/SpidersFragment" />
     </fragment>
 </navigation>
