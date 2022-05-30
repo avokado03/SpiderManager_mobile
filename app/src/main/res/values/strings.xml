@@ -25,5 +25,6 @@
     <string name="notify_period">Период оповещения</string>
     <string name="update_notify_period">Обновить период</string>
     <string name="default_spider">default-spider</string>
+    <string name="create">Сохранить</string>
 
 </resources>
