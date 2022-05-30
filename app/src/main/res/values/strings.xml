@@ -8,11 +8,12 @@
 
     <string name="next">Вперед</string>
     <string name="previous">Назад</string>
+    <string name="save">Сохранить</string>
     <string name="add_spider">Добавить паука</string>
     <string name="update_spider">Обновить</string>
     <string name="delete_spider">Удалить</string>
     <string name="spider_name">Кличка</string>
-    <string name="spider_age">Линька</string>
+    <string name="spider_age">Возраст(в линьках)</string>
     <string name="spider_type">Вид</string>
     <string name="spider_photo">Фото</string>
     <string name="spider_sex">Пол</string>
