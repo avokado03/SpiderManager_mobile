@@ -9,8 +9,7 @@
         android:id="@+id/photo"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_marginTop="12dp"
         android:contentDescription="@string/default_spider"
         android:src="@mipmap/spider_default_foreground"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -59,6 +58,17 @@
         app:layout_constraintLeft_toRightOf="@id/sex"
         app:layout_constraintStart_toStartOf="@id/type"
         app:layout_constraintTop_toBottomOf="@id/type" />
+
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/garbage_icon_foreground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
