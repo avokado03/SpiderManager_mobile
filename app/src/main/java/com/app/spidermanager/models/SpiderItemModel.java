@@ -2,25 +2,27 @@ package com.app.spidermanager.models;
 
 import android.graphics.drawable.Drawable;
 
-public class SpiderItemModel {
-    private final int id;
+/**
+ * Модель для представления записи
+ * о пауке в списке
+ */
+public class SpiderItemModel extends ModelWithId{
+    // Кличка, вид, последняя дата кормления
     private final String name, type, feedingDate;
+    // Фото
     private final byte[] photo;
+    // Пол (иконка)
     private final Drawable sex;
 
     public SpiderItemModel(int id, String name, String type,
                            String feedingDate,
                            byte[] photo, Drawable sex) {
-        this.id = id;
+        super(id);
         this.name = name;
         this.type = type;
         this.feedingDate = feedingDate;
         this.photo = photo;
         this.sex = sex;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getName() {
