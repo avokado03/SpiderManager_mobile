@@ -20,11 +20,12 @@
     <string name="spider_feeding_date">Дата последней кормежки</string>
     <string name="spider_molting_date">Дата последней линьки</string>
     <string name="view_notifications">Просмотр оповещений</string>
-    <string name="on_notification">Включить оповещение</string>
     <string name="off_notification">Выключить оповещение</string>
-    <string name="notify_period">Период оповещения</string>
+    <string name="notify_period">Период \nоповещения:</string>
+    <string name="notify_period_default">0 дней</string>
     <string name="update_notify_period">Обновить период</string>
     <string name="default_spider">default-spider</string>
     <string name="create">Сохранить</string>
+    <string name="delete_notification">Удалить оповещение</string>
 
 </resources>

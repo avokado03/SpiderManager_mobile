@@ -67,7 +67,7 @@ public class SpidersAdapter extends RecyclerView.Adapter<SpidersAdapter.SpiderVi
     public static class SpiderViewHolder extends ViewHolder {
         final ImageView photoView, sexView;
         final TextView nameView, typeView, feedingDateView;
-        SpiderViewHolder(View view){
+        SpiderViewHolder(@NonNull View view){
             super(view);
             photoView = view.findViewById(R.id.photo);
             nameView = view.findViewById(R.id.name);

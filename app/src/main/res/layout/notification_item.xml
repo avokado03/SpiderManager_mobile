@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/notify_spider_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:text="@string/spider_name"
+        android:textSize="@dimen/list_font_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/notify_spider_type"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:text="@string/spider_type"
+        android:textSize="@dimen/list_font_size"
+        app:layout_constraintTop_toBottomOf="@id/notify_spider_name"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/notify_period_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:text="@string/notify_period"
+        android:textSize="@dimen/list_font_size"
+        android:labelFor="@id/notify_period_edit"
+        app:layout_constraintEnd_toStartOf="@+id/button_notify_delete"
+        app:layout_constraintTop_toTopOf="@+id/notify_spider_name" />
+
+    <EditText
+        android:id="@+id/notify_period_edit"
+        android:layout_width="72dp"
+        android:layout_height="48dp"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:maxHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/notify_period_label"
+        app:layout_constraintStart_toStartOf="@+id/notify_period_label"
+        app:layout_constraintTop_toBottomOf="@+id/button_notify_delete"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <Button
+        android:id="@+id/button_notify_delete"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/garbage_icon_foreground"
+        android:contentDescription="@string/delete_notification"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/notify_spider_name" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
