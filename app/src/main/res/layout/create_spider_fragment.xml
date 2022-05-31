@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/accent_purple"
-    tools:context="com.app.spidermanager.UpdSpiderFragment">
+    tools:context="com.app.spidermanager.CreateSpiderFragment">
 
     <ScrollView
         android:layout_width="match_parent"
