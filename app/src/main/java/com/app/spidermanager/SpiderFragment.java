@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.spidermanager.adapters.SpidersAdapter;
 import com.app.spidermanager.databinding.SpidersFragmentBinding;
 import com.app.spidermanager.models.SpiderItemModel;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -33,6 +34,11 @@ public class SpiderFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = SpidersFragmentBinding.inflate(inflater, container, false);
+
+        binding.buttonAddSpider.setOnClickListener(view ->
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
+
         return binding.getRoot();
     }
 
@@ -46,7 +52,7 @@ public class SpiderFragment extends Fragment {
         setData();
         SpidersAdapter.OnSpiderClickListener listener = (model, position) ->
                 NavHostFragment.findNavController(SpiderFragment.this)
-                .navigate(R.id.action_SpidersFragment_to_SecondFragment);
+                .navigate(R.id.action_SpidersFragment_to_UpdSpiderFragment);
         SpidersAdapter adapter = new SpidersAdapter(this.requireContext(), listener, itemModels);
         recyclerView.setAdapter(adapter);
     }

@@ -12,8 +12,19 @@
         tools:layout="@layout/spiders_fragment">
 
         <action
-            android:id="@+id/action_SpidersFragment_to_SecondFragment"
+            android:id="@+id/action_SpidersFragment_to_UpdSpiderFragment"
             app:destination="@id/UpdSpiderFragment" />
+
+        <action
+            android:id="@+id/action_SpidersFragment_to_NotificationsFragment"
+            app:destination="@id/NotificationsFragment" />
+
+        <action
+            android:id="@+id/action_SpidersFragment_to_CreateSpiderFragment"
+            app:destination="@id/CreateSpiderFragment" />
+        <action
+            android:id="@+id/action_SpidersFragment_to_AboutFragment"
+            app:destination="@id/AboutFragment" />
     </fragment>
     <fragment
         android:id="@+id/UpdSpiderFragment"
@@ -23,6 +34,36 @@
 
         <action
             android:id="@+id/action_UpdSpiderFragment_to_SpidersFragment"
+            app:destination="@id/SpidersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/CreateSpiderFragment"
+        android:name="com.app.spidermanager.CreateSpiderFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/create_spider_fragment">
+
+        <action
+            android:id="@+id/action_CreateSpiderFragment_to_SpidersFragment"
+            app:destination="@id/SpidersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/NotificationsFragment"
+        android:name="com.app.spidermanager.NotificationFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/notifications_fragment">
+
+        <action
+            android:id="@+id/action_NotificationsFragment_to_SpidersFragment"
+            app:destination="@id/SpidersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/AboutFragment"
+        android:name="com.app.spidermanager.AboutFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_about">
+
+        <action
+            android:id="@+id/action_AboutFragment_to_SpidersFragment"
             app:destination="@id/SpidersFragment" />
     </fragment>
 </navigation>

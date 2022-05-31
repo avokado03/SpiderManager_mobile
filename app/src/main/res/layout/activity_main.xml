@@ -25,15 +25,4 @@
         layout="@layout/content_main"
         android:background="@color/accent_purple" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:foreground="@drawable/add_spider_foreground"
-        app:backgroundTint="@color/secondary_blue"
-        tools:ignore="SpeakableTextPresentCheck" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
