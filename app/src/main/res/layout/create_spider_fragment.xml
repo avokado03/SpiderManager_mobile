@@ -14,8 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
-            >
+            android:gravity="center" >
 
             <ImageView
                 android:id="@+id/create_photo"
@@ -36,8 +35,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.483"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/create_photo"
-                tools:ignore="MissingConstraints">
+                app:layout_constraintTop_toBottomOf="@+id/create_photo" >
 
                 <TextView
                     android:id="@+id/create_name"
@@ -61,6 +59,7 @@
                     android:layout_marginBottom="10dp"
                     android:importantForAutofill="no"
                     android:inputType="text"
+                    android:minHeight="48dp"
                     android:textSize="@dimen/list_font_size" />
 
 
@@ -84,6 +83,18 @@
                     android:layout_marginTop="4dp"
                     android:importantForAutofill="no"
                     android:inputType="text"
+                    android:minHeight="48dp"
+                    android:textSize="@dimen/list_font_size" />
+
+                <TextView
+                    android:id="@+id/create_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/create_sex_edit"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:labelFor="@id/create_type_edit"
+                    android:text="@string/spider_type"
                     android:textSize="@dimen/list_font_size" />
 
                 <EditText
@@ -95,7 +106,20 @@
                     android:layout_marginTop="4dp"
                     android:importantForAutofill="no"
                     android:inputType="text"
+                    android:minHeight="48dp"
                     android:textSize="@dimen/list_font_size" />
+
+                <TextView
+                    android:id="@+id/create_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/create_type_edit"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:labelFor="@id/create_age_edit"
+                    android:text="@string/spider_age"
+                    android:textSize="@dimen/list_font_size"
+                    app:layout_constraintLeft_toLeftOf="parent" />
 
                 <EditText
                     android:id="@+id/create_age_edit"
@@ -106,7 +130,20 @@
                     android:layout_marginTop="4dp"
                     android:importantForAutofill="no"
                     android:inputType="text"
+                    android:minHeight="48dp"
                     android:textSize="@dimen/list_font_size" />
+
+                <TextView
+                    android:id="@+id/create_feeding_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/create_age_edit"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:labelFor="@id/create_feeding_date_edit"
+                    android:text="@string/spider_feeding_date"
+                    android:textSize="@dimen/list_font_size"
+                    app:layout_constraintLeft_toLeftOf="parent" />
 
                 <EditText
                     android:id="@+id/create_feeding_date_edit"
@@ -118,6 +155,18 @@
                     android:enabled="false"
                     android:importantForAutofill="no"
                     android:inputType="date"
+                    android:minHeight="48dp"
+                    android:textSize="@dimen/list_font_size" />
+
+                <TextView
+                    android:id="@+id/create_molting_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/create_feeding_date_edit"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:labelFor="@id/create_molting_date_edit"
+                    android:text="@string/spider_molting_date"
                     android:textSize="@dimen/list_font_size" />
 
                 <EditText
@@ -132,51 +181,6 @@
                     android:inputType="date"
                     android:textSize="@dimen/list_font_size" />
 
-                <TextView
-                    android:id="@+id/create_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/create_sex_edit"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    android:labelFor="@id/create_type"
-                    android:text="@string/spider_type"
-                    android:textSize="@dimen/list_font_size" />
-
-                <TextView
-                    android:id="@+id/create_age"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/create_type_edit"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    android:labelFor="@id/create_age"
-                    android:text="@string/spider_age"
-                    android:textSize="@dimen/list_font_size"
-                    app:layout_constraintLeft_toLeftOf="parent" />
-
-                <TextView
-                    android:id="@+id/create_feeding_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/create_age_edit"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    android:labelFor="@id/create_feeding_date_edit"
-                    android:text="@string/spider_feeding_date"
-                    android:textSize="@dimen/list_font_size"
-                    app:layout_constraintLeft_toLeftOf="parent" />
-
-                <TextView
-                    android:id="@+id/create_molting_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/create_feeding_date_edit"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    android:labelFor="@id/create_molting_date_edit"
-                    android:text="@string/spider_molting_date"
-                    android:textSize="@dimen/list_font_size" />
             </RelativeLayout>
 
             <LinearLayout
@@ -194,7 +198,8 @@
                     android:text="@string/create"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/create_photo"
-                    app:layout_constraintStart_toStartOf="@id/create_photo" />
+                    app:layout_constraintStart_toStartOf="@id/create_photo"
+                    style="?android:attr/buttonBarButtonStyle" />
 
                 <Button
                     android:id="@+id/button_back"
@@ -207,14 +212,13 @@
                     android:text="@string/previous"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/create_photo"
-                    app:layout_constraintStart_toStartOf="@id/create_photo" />
+                    app:layout_constraintStart_toStartOf="@id/create_photo"
+                    style="?android:attr/buttonBarButtonStyle" />
 
                 </LinearLayout>
             </LinearLayout>
 
 
     </ScrollView>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
