@@ -29,4 +29,7 @@
     <string name="create">Сохранить</string>
     <string name="delete_notification">Удалить оповещение</string>
     <string name="about">О программе</string>
+    <string name="confirm_dialog_title">Подтвердите действие</string>
+    <string name="confirm_dialog_accept">Да</string>
+    <string name="confirm_dialog_decline">Нет</string>
 </resources>
