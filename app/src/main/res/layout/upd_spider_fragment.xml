@@ -154,11 +154,13 @@
                     android:layout_below="@+id/upd_feeding_date"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
-                    android:enabled="false"
                     android:importantForAutofill="no"
-                    android:inputType="date"
+                    android:inputType="none"
                     android:minHeight="48dp"
-                    android:textSize="@dimen/list_font_size" />
+                    android:textSize="@dimen/list_font_size"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    tools:ignore="TextFields" />
 
                 <TextView
                     android:id="@+id/upd_molting_date"
@@ -178,11 +180,13 @@
                     android:layout_below="@+id/upd_molting_date"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
-                    android:enabled="false"
                     android:importantForAutofill="no"
-                    android:inputType="date"
+                    android:inputType="none"
                     android:minHeight="48dp"
-                    android:textSize="@dimen/list_font_size" />
+                    android:textSize="@dimen/list_font_size"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    tools:ignore="TextFields" />
 
             </RelativeLayout>
 

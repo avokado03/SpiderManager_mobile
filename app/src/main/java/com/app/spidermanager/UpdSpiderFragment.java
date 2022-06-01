@@ -2,6 +2,7 @@ package com.app.spidermanager;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -13,8 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -23,8 +22,10 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import com.app.spidermanager.databinding.UpdSpiderFragmentBinding;
+import com.app.spidermanager.utils.DialogUtils;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 public class UpdSpiderFragment extends Fragment {
 
@@ -62,6 +63,22 @@ public class UpdSpiderFragment extends Fragment {
                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                         2000);
             }
+        });
+
+        // TODO: перенести коллбэки из событий в отдельные методы
+        // добавить базовый класс для фрагментов пауков
+        // сделать baseEntity для репов
+        // форматнуть дату, вынести в утилс работу с датами
+        // дописать комменты
+        // посмотреть валидацию
+        binding.updFeedingDateEdit.setOnClickListener(v -> {
+            Dialog dialog = DialogUtils.createDatePickerDialog(
+                    this.requireContext(), (picker, year, month, day) -> {
+                        Calendar newDate = Calendar.getInstance();
+                        newDate.set(year,month,day);
+                        binding.updFeedingDateEdit.setText(newDate.getTime().toString());
+                    });
+            dialog.show();
         });
     }
 

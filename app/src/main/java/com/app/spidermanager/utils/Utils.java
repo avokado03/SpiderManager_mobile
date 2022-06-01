@@ -20,4 +20,6 @@ public class Utils {
         Bitmap bitmap = BitmapFactory.decodeByteArray(array,0, array.length);
         return Bitmap.createScaledBitmap(bitmap, width, height, false);
     }
+
+
 }

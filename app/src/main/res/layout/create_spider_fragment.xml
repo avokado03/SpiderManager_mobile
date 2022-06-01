@@ -156,6 +156,8 @@
                     android:importantForAutofill="no"
                     android:inputType="date"
                     android:minHeight="48dp"
+                    android:cursorVisible="false"
+                    android:focusable="false"
                     android:textSize="@dimen/list_font_size" />
 
                 <TextView
@@ -179,6 +181,8 @@
                     android:importantForAutofill="no"
                     android:enabled="false"
                     android:inputType="date"
+                    android:cursorVisible="false"
+                    android:focusable="false"
                     android:textSize="@dimen/list_font_size" />
 
             </RelativeLayout>
