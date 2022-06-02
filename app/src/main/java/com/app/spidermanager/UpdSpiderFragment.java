@@ -1,7 +1,6 @@
 package com.app.spidermanager;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -14,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -28,22 +28,21 @@ import com.app.spidermanager.utils.DialogUtils;
 import com.app.spidermanager.utils.Utils;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class UpdSpiderFragment extends Fragment {
 
     private UpdSpiderFragmentBinding binding;
+    private ActivityResultLauncher<Intent> activityResultLauncher;
 
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
         binding = UpdSpiderFragmentBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+        setImageBitmap(binding.updPhoto);
 
+        return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -53,6 +52,14 @@ public class UpdSpiderFragment extends Fragment {
                 NavHostFragment.findNavController(UpdSpiderFragment.this)
                 .navigate(R.id.action_UpdSpiderFragment_to_SpidersFragment));
 
+        // TODO: Вынести проверку пермишенов
+        // добавить базовый класс для фрагментов пауков
+        // дописать комменты
+        // посмотреть валидацию
+        binding.updFeedingDateEdit.setOnClickListener(v -> setDate(binding.updFeedingDateEdit));
+
+        binding.updMoltingDateEdit.setOnClickListener(v -> setDate(binding.updMoltingDateEdit));
+
         binding.updPhoto.setOnClickListener(v -> {
             int permission = ContextCompat.checkSelfPermission(
                     requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -60,6 +67,7 @@ public class UpdSpiderFragment extends Fragment {
             {
                 Intent intent = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
                 activityResultLauncher.launch(intent);
             }
             else{
@@ -68,39 +76,36 @@ public class UpdSpiderFragment extends Fragment {
                         2000);
             }
         });
-
-        // TODO: перенести коллбэки из событий в отдельные методы
-        // добавить базовый класс для фрагментов пауков
-        // дописать комменты
-        // посмотреть валидацию
-        binding.updFeedingDateEdit.setOnClickListener(v -> {
-            Dialog dialog = DialogUtils.createDatePickerDialog(
-                    this.requireContext(), (picker, year, month, day) ->
-                            binding.updFeedingDateEdit.setText
-                            (Utils.getFormattedDateString(year,month,day)));
-            dialog.show();
-        });
     }
 
-    ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    Intent data = result.getData();
-                    if (data != null){
-                        Uri selected = data.getData();
-                        try{
-                            Bitmap bitmap = MediaStore.Images.
-                                    Media.getBitmap(getActivity().getContentResolver(),
-                                    selected);
-                            binding.updPhoto.setImageBitmap(bitmap);
-                        }
-                        catch (IOException e){
-                            Log.i("DEBUG", "activityResultLauncher - IOException");
+    public void setDate(EditText editText){
+        Dialog dialog = DialogUtils.createDatePickerDialog(
+                this.requireContext(), (picker, year, month, day) ->
+                        editText.setText(Utils.getFormattedDateString(year,month,day)));
+        dialog.show();
+    }
+
+    public void setImageBitmap(ImageView imageView) {
+        activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data != null) {
+                            Uri selected = data.getData();
+                            try {
+                                Bitmap bitmap = MediaStore.Images.Media.getBitmap(
+                                        UpdSpiderFragment.this.
+                                                getActivity().getContentResolver(), selected);
+                                imageView.setImageBitmap(bitmap);
+                            } catch (IOException e) {
+                                Log.i("DEBUG", "activityResultLauncher - IOException");
+                            }
                         }
                     }
                 }
-            });
+        );
+    }
 
     @Override
     public void onDestroyView() {
