@@ -1,7 +1,11 @@
 package com.app.spidermanager.utils;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Класс со вспомогательными методами
@@ -21,5 +25,12 @@ public class Utils {
         return Bitmap.createScaledBitmap(bitmap, width, height, false);
     }
 
-
+    // region Даты
+        @SuppressLint("SimpleDateFormat")
+        public static String getFormattedDateString(int year, int month, int day){
+            Calendar newDate = Calendar.getInstance();
+            newDate.set(year,month,day);
+            return new SimpleDateFormat("dd.MM.yyyy").format(newDate.getTime());
+        }
+    // endregion
 }

@@ -1,6 +1,7 @@
 package com.app.spidermanager;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -23,8 +25,10 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import com.app.spidermanager.databinding.UpdSpiderFragmentBinding;
 import com.app.spidermanager.utils.DialogUtils;
+import com.app.spidermanager.utils.Utils;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class UpdSpiderFragment extends Fragment {
@@ -59,7 +63,7 @@ public class UpdSpiderFragment extends Fragment {
                 activityResultLauncher.launch(intent);
             }
             else{
-                ActivityCompat.requestPermissions(getActivity(),
+                ActivityCompat.requestPermissions(requireActivity(),
                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                         2000);
             }
@@ -67,17 +71,13 @@ public class UpdSpiderFragment extends Fragment {
 
         // TODO: перенести коллбэки из событий в отдельные методы
         // добавить базовый класс для фрагментов пауков
-        // сделать baseEntity для репов
-        // форматнуть дату, вынести в утилс работу с датами
         // дописать комменты
         // посмотреть валидацию
         binding.updFeedingDateEdit.setOnClickListener(v -> {
             Dialog dialog = DialogUtils.createDatePickerDialog(
-                    this.requireContext(), (picker, year, month, day) -> {
-                        Calendar newDate = Calendar.getInstance();
-                        newDate.set(year,month,day);
-                        binding.updFeedingDateEdit.setText(newDate.getTime().toString());
-                    });
+                    this.requireContext(), (picker, year, month, day) ->
+                            binding.updFeedingDateEdit.setText
+                            (Utils.getFormattedDateString(year,month,day)));
             dialog.show();
         });
     }
