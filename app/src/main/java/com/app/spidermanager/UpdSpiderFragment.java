@@ -23,16 +23,17 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+
+import com.app.spidermanager.base.EditableFragment;
 import com.app.spidermanager.databinding.UpdSpiderFragmentBinding;
 import com.app.spidermanager.utils.DialogUtils;
 import com.app.spidermanager.utils.Utils;
 
 import java.io.IOException;
 
-public class UpdSpiderFragment extends Fragment {
+public class UpdSpiderFragment extends EditableFragment {
 
     private UpdSpiderFragmentBinding binding;
-    private ActivityResultLauncher<Intent> activityResultLauncher;
 
     @Override
     public View onCreateView(
@@ -40,7 +41,7 @@ public class UpdSpiderFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = UpdSpiderFragmentBinding.inflate(inflater, container, false);
-        setImageBitmap(binding.updPhoto);
+        setImageBitmap(binding.updPhoto, UpdSpiderFragment.this);
 
         return binding.getRoot();
     }
@@ -52,58 +53,19 @@ public class UpdSpiderFragment extends Fragment {
                 NavHostFragment.findNavController(UpdSpiderFragment.this)
                 .navigate(R.id.action_UpdSpiderFragment_to_SpidersFragment));
 
-        // TODO: Вынести проверку пермишенов
-        // добавить базовый класс для фрагментов пауков
+        // TODO:
         // дописать комменты
         // посмотреть валидацию
         binding.updFeedingDateEdit.setOnClickListener(v -> setDate(binding.updFeedingDateEdit));
 
         binding.updMoltingDateEdit.setOnClickListener(v -> setDate(binding.updMoltingDateEdit));
 
-        binding.updPhoto.setOnClickListener(v -> {
-            int permission = ContextCompat.checkSelfPermission(
-                    requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
-            if(permission != PackageManager.PERMISSION_GRANTED)
-            {
-                Intent intent = new Intent(Intent.ACTION_PICK,
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-                activityResultLauncher.launch(intent);
-            }
-            else{
-                ActivityCompat.requestPermissions(requireActivity(),
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        2000);
-            }
-        });
-    }
-
-    public void setDate(EditText editText){
-        Dialog dialog = DialogUtils.createDatePickerDialog(
-                this.requireContext(), (picker, year, month, day) ->
-                        editText.setText(Utils.getFormattedDateString(year,month,day)));
-        dialog.show();
-    }
-
-    public void setImageBitmap(ImageView imageView) {
-        activityResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Intent data = result.getData();
-                        if (data != null) {
-                            Uri selected = data.getData();
-                            try {
-                                Bitmap bitmap = MediaStore.Images.Media.getBitmap(
-                                        UpdSpiderFragment.this.
-                                                getActivity().getContentResolver(), selected);
-                                imageView.setImageBitmap(bitmap);
-                            } catch (IOException e) {
-                                Log.i("DEBUG", "activityResultLauncher - IOException");
-                            }
-                        }
-                    }
-                }
+        binding.updPhoto.setOnClickListener(v ->
+                checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, () -> {
+                    Intent intent = new Intent(Intent.ACTION_PICK,
+                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    activityResultLauncher.launch(intent);
+            })
         );
     }
 

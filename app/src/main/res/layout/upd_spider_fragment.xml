@@ -14,8 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
-            >
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/upd_photo"
@@ -37,6 +36,13 @@
                 app:layout_constraintHorizontal_bias="0.483"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/upd_photo" >
+
+                <TextView
+                    android:id="@+id/upd_spider_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_id_text"
+                    android:visibility="invisible"/>
 
                 <TextView
                     android:id="@+id/upd_name"

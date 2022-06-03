@@ -22,11 +22,7 @@ import java.util.ArrayList;
 public class SpiderFragment extends Fragment {
 
     private SpidersFragmentBinding binding;
-    private final ArrayList<SpiderItemModel> itemModels;
-
-    public SpiderFragment() {
-        this.itemModels = new ArrayList<>();
-    }
+    private ArrayList<SpiderItemModel> itemModels;
 
     @Override
     public View onCreateView(
@@ -35,15 +31,16 @@ public class SpiderFragment extends Fragment {
     ) {
         binding = SpidersFragmentBinding.inflate(inflater, container, false);
 
-        binding.buttonAddSpider.setOnClickListener(view ->
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
+        binding.buttonAddSpider.setOnClickListener(v ->
+                NavHostFragment.findNavController(SpiderFragment.this)
+                .navigate(R.id.action_SpidersFragment_to_CreateSpiderFragment));
 
         return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        itemModels = new ArrayList<>();
         buildSpiderList();
     }
 

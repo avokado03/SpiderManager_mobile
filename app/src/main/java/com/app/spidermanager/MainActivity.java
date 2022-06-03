@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
         final NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_content_main);
         final NavController navController = navHostFragment.getNavController();
 
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

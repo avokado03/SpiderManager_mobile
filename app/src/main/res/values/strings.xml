@@ -32,4 +32,5 @@
     <string name="confirm_dialog_title">Подтвердите действие</string>
     <string name="confirm_dialog_accept">Да</string>
     <string name="confirm_dialog_decline">Нет</string>
+    <string name="default_id_text">id</string>
 </resources>
