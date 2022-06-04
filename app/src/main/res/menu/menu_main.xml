@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.spidermanager.com.app.spidermanager.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_notification"
         android:checkable="false"
         android:checked="false"
         android:icon="@mipmap/notification_icon"
