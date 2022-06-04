@@ -1,35 +1,18 @@
 package com.app.spidermanager;
 
 import android.Manifest;
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.app.spidermanager.base.EditableFragment;
 import com.app.spidermanager.databinding.UpdSpiderFragmentBinding;
-import com.app.spidermanager.utils.DialogUtils;
-import com.app.spidermanager.utils.Utils;
-
-import java.io.IOException;
 
 public class UpdSpiderFragment extends EditableFragment {
 
@@ -49,9 +32,10 @@ public class UpdSpiderFragment extends EditableFragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonBack.setOnClickListener(v ->
+        binding.buttonBack.setOnClickListener(v -> {
                 NavHostFragment.findNavController(UpdSpiderFragment.this)
-                .navigate(R.id.action_UpdSpiderFragment_to_SpidersFragment));
+                .navigate(R.id.action_UpdSpiderFragment_to_SpidersFragment);
+        });
 
         // TODO:
         // дописать комменты
@@ -69,9 +53,5 @@ public class UpdSpiderFragment extends EditableFragment {
         );
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
+
 }
