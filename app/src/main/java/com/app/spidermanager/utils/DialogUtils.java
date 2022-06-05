@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog;
 import com.app.spidermanager.R;
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Утилитарные методы для создания диалогов
@@ -41,7 +42,9 @@ public class DialogUtils {
     public static Dialog createDatePickerDialog(
             Context context, DatePickerDialog.OnDateSetListener setHandler){
         Calendar now = Calendar.getInstance();
-        return new DatePickerDialog(context, setHandler, now.get(Calendar.YEAR),
+        DatePickerDialog dialog = new DatePickerDialog(context, setHandler, now.get(Calendar.YEAR),
                 now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
+        dialog.getDatePicker().setMaxDate(new Date().getTime());
+        return dialog;
     }
 }

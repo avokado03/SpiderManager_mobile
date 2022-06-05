@@ -13,6 +13,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.app.spidermanager.base.EditableFragment;
 import com.app.spidermanager.databinding.UpdSpiderFragmentBinding;
+import com.app.spidermanager.validation.EmptyStringValidator;
+import com.app.spidermanager.validation.NotZeroValidator;
 
 public class UpdSpiderFragment extends EditableFragment {
 
@@ -32,14 +34,12 @@ public class UpdSpiderFragment extends EditableFragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonBack.setOnClickListener(v -> {
+        binding.buttonBack.setOnClickListener(v ->
                 NavHostFragment.findNavController(UpdSpiderFragment.this)
-                .navigate(R.id.action_UpdSpiderFragment_to_SpidersFragment);
-        });
+        .navigate(R.id.action_UpdSpiderFragment_to_SpidersFragment));
 
         // TODO:
         // дописать комменты
-        // посмотреть валидацию
         binding.updFeedingDateEdit.setOnClickListener(v -> setDate(binding.updFeedingDateEdit));
 
         binding.updMoltingDateEdit.setOnClickListener(v -> setDate(binding.updMoltingDateEdit));
@@ -51,6 +51,12 @@ public class UpdSpiderFragment extends EditableFragment {
                     activityResultLauncher.launch(intent);
             })
         );
+
+        binding.updNameEdit.addTextChangedListener(new EmptyStringValidator(binding.updNameEdit));
+        binding.updTypeEdit.addTextChangedListener(new EmptyStringValidator(binding.updTypeEdit));
+
+        binding.updAgeEdit.addTextChangedListener(new NotZeroValidator(binding.updAgeEdit));
+
     }
 
 

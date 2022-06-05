@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.spidermanager.R;
 import com.app.spidermanager.models.NotificationItemModel;
+import com.app.spidermanager.validation.NotZeroValidator;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
 
     @Override
     public void onBindViewHolder(@NonNull NotificationsAdapter.NotificationsViewHolder holder, int position) {
-
+        holder.periodEdit.addTextChangedListener(new NotZeroValidator(holder.periodEdit));
     }
 
     @Override

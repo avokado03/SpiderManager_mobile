@@ -65,6 +65,7 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:importantForAutofill="no"
+                    android:maxLength="@integer/spider_name_size"
                     android:inputType="text"
                     android:minHeight="48dp"
                     android:textSize="@dimen/list_font_size" />
@@ -81,17 +82,18 @@
                     android:text="@string/spider_sex"
                     android:textSize="@dimen/list_font_size" />
 
-                <EditText
+                <Spinner
                     android:id="@+id/upd_sex_edit"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/upd_sex"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
+                    android:entries="@array/sex_variants"
                     android:importantForAutofill="no"
-                    android:inputType="text"
                     android:minHeight="48dp"
                     android:textSize="@dimen/list_font_size" />
+
 
                 <TextView
                     android:id="@+id/upd_type"
@@ -113,6 +115,7 @@
                     android:layout_marginTop="4dp"
                     android:importantForAutofill="no"
                     android:inputType="text"
+                    android:maxLength="@integer/spider_type_size"
                     android:minHeight="48dp"
                     android:textSize="@dimen/list_font_size" />
 
@@ -136,7 +139,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
                     android:importantForAutofill="no"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:minHeight="48dp"
                     android:textSize="@dimen/list_font_size"
                     tools:ignore="SpeakableTextPresentCheck" />
@@ -160,12 +163,12 @@
                     android:layout_below="@+id/upd_feeding_date"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
-                    android:importantForAutofill="no"
-                    android:inputType="none"
-                    android:minHeight="48dp"
-                    android:textSize="@dimen/list_font_size"
                     android:cursorVisible="false"
                     android:focusable="false"
+                    android:importantForAutofill="no"
+                    android:inputType="date"
+                    android:minHeight="48dp"
+                    android:textSize="@dimen/list_font_size"
                     tools:ignore="TextFields" />
 
                 <TextView
@@ -186,12 +189,12 @@
                     android:layout_below="@+id/upd_molting_date"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
-                    android:importantForAutofill="no"
-                    android:inputType="none"
-                    android:minHeight="48dp"
-                    android:textSize="@dimen/list_font_size"
                     android:cursorVisible="false"
                     android:focusable="false"
+                    android:importantForAutofill="no"
+                    android:inputType="date"
+                    android:minHeight="48dp"
+                    android:textSize="@dimen/list_font_size"
                     tools:ignore="TextFields" />
 
             </RelativeLayout>
@@ -228,13 +231,7 @@
                     app:layout_constraintStart_toStartOf="@id/upd_photo"
                     style="?android:attr/buttonBarButtonStyle" />
 
-
                 </LinearLayout>
             </LinearLayout>
-
-
     </ScrollView>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

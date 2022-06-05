@@ -28,23 +28,23 @@ public class NotificationFragment extends Fragment {
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+            Bundle savedInstanceState) {
         binding = NotificationsFragmentBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        buildSpiderList();
+        buildNotificationList();
+
+        binding.buttonBack.setOnClickListener(v ->
+                NavHostFragment.findNavController(NotificationFragment.this)
+                .navigate(R.id.action_NotificationsFragment_to_SpidersFragment));
     }
 
-    private void buildSpiderList() {
+    private void buildNotificationList() {
         RecyclerView recyclerView = requireView().findViewById(R.id.notifications_list);
         setData();
-
-    /* NavHostFragment.findNavController(NotificationFragment.this)
-                        .navigate(R.id.action_NotificationFragment_to_SpiderFragment);*/
         NotificationsAdapter adapter = new NotificationsAdapter(this.requireContext(), itemModels);
         recyclerView.setAdapter(adapter);
     }
@@ -56,7 +56,6 @@ public class NotificationFragment extends Fragment {
     }
 
     private void setData() {
-
+        itemModels.add(new NotificationItemModel(1, 7, "test1", "type1", true));
     }
-
 }

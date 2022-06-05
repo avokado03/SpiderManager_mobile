@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="spider_name_size" type="integer">255</item>
+    <item name="spider_type_size" type="integer">100</item>
+    <item name="default_notification_needed" type="bool">false</item>
+    <item name="default_notification_periods" type="integer">7</item>
+</resources>

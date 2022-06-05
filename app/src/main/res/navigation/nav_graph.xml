@@ -60,7 +60,7 @@
         android:id="@+id/AboutFragment"
         android:name="com.app.spidermanager.AboutFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_about">
+        tools:layout="@layout/about_fragment">
 
         <action
             android:id="@+id/action_AboutFragment_to_SpidersFragment"

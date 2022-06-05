@@ -11,10 +11,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.viewbinding.ViewBinding;
 
 import com.app.spidermanager.base.EditableFragment;
 import com.app.spidermanager.databinding.CreateSpiderFragmentBinding;
+import com.app.spidermanager.validation.EmptyStringValidator;
+import com.app.spidermanager.validation.NotZeroValidator;
 
 public class CreateSpiderFragment extends EditableFragment {
 
@@ -48,6 +49,10 @@ public class CreateSpiderFragment extends EditableFragment {
                     activityResultLauncher.launch(intent);
             })
         );
+
+        binding.createNameEdit.addTextChangedListener(new EmptyStringValidator(binding.createNameEdit));
+        binding.createTypeEdit.addTextChangedListener(new EmptyStringValidator(binding.createTypeEdit));
+        binding.createAgeEdit.addTextChangedListener(new NotZeroValidator(binding.createAgeEdit));
     }
 
     @Override

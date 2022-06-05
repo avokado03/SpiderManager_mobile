@@ -75,15 +75,15 @@
                     android:text="@string/spider_sex"
                     android:textSize="@dimen/list_font_size" />
 
-                <EditText
+                <Spinner
                     android:id="@+id/create_sex_edit"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/create_sex"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
+                    android:entries="@array/sex_variants"
                     android:importantForAutofill="no"
-                    android:inputType="text"
                     android:minHeight="48dp"
                     android:textSize="@dimen/list_font_size" />
 
@@ -91,7 +91,7 @@
                     android:id="@+id/create_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/create_sex_edit"
+                    android:layout_below="@id/create_sex_edit"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="12dp"
                     android:labelFor="@id/create_type_edit"

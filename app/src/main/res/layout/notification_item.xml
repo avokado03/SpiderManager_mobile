@@ -55,6 +55,7 @@
         android:importantForAutofill="no"
         android:inputType="number"
         android:maxHeight="48dp"
+        android:text="@string/notify_period_default"
         app:layout_constraintEnd_toEndOf="@+id/notify_period_label"
         app:layout_constraintHorizontal_bias="0.366"
         app:layout_constraintStart_toStartOf="@+id/notify_period_label"
