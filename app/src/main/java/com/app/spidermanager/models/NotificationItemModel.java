@@ -5,7 +5,7 @@ package com.app.spidermanager.models;
  * в списке
  */
 public class NotificationItemModel extends ModelWithId{
-    // Период оповещения
+    // Период оповещения, id паука
     private final int period;
     // Состояние оповещения
     private final boolean notificationNeeded;

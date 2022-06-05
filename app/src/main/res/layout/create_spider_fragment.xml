@@ -1,42 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/accent_purple"
-    tools:context="com.app.spidermanager.CreateSpiderFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ScrollView
+    <data>
+
+        <variable
+            name="spider"
+            type="com.app.spidermanager.models.SpiderItemModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:background="@color/accent_purple"
+        tools:context="com.app.spidermanager.CreateSpiderFragment">
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center" >
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/create_photo"
-                android:layout_width="300dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="@dimen/fab_margin"
-                android:layout_marginBottom="@dimen/fab_margin"
-                android:contentDescription="@string/default_spider"
-                android:src="@mipmap/spider_default_foreground"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="500dp"
-                android:layout_marginTop="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.483"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/create_photo" >
+                <ImageView
+                    android:id="@+id/create_photo"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="@dimen/fab_margin"
+                    android:layout_marginBottom="@dimen/fab_margin"
+                    android:contentDescription="@string/default_spider"
+                    android:src="@mipmap/spider_default_foreground"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="500dp"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.483"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/create_photo">
 
                 <TextView
                     android:id="@+id/create_name"
@@ -49,179 +57,180 @@
                     android:labelFor="@id/create_name_edit"
                     app:layout_constraintLeft_toLeftOf="parent" />
 
-                <EditText
-                    android:id="@+id/create_name_edit"
-                    android:layout_width="300dp"
+                    <EditText
+                        android:id="@+id/create_name_edit"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/create_name"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:minHeight="48dp"
+                        android:textSize="@dimen/list_font_size" />
+
+
+                    <TextView
+                        android:id="@+id/create_sex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/create_name_edit"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="1dp"
+                        android:labelFor="@id/create_sex_edit"
+                        android:text="@string/spider_sex"
+                        android:textSize="@dimen/list_font_size" />
+
+                    <EditText
+                        android:id="@+id/create_sex_edit"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/create_sex"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:minHeight="48dp"
+                        android:textSize="@dimen/list_font_size" />
+
+                    <TextView
+                        android:id="@+id/create_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/create_sex_edit"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="12dp"
+                        android:labelFor="@id/create_type_edit"
+                        android:text="@string/spider_type"
+                        android:textSize="@dimen/list_font_size" />
+
+                    <EditText
+                        android:id="@+id/create_type_edit"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/create_type"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:minHeight="48dp"
+                        android:textSize="@dimen/list_font_size" />
+
+                    <TextView
+                        android:id="@+id/create_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/create_type_edit"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="12dp"
+                        android:labelFor="@id/create_age_edit"
+                        android:text="@string/spider_age"
+                        android:textSize="@dimen/list_font_size"
+                        app:layout_constraintLeft_toLeftOf="parent" />
+
+                    <EditText
+                        android:id="@+id/create_age_edit"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/create_age"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:minHeight="48dp"
+                        android:textSize="@dimen/list_font_size" />
+
+                    <TextView
+                        android:id="@+id/create_feeding_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/create_age_edit"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="12dp"
+                        android:labelFor="@id/create_feeding_date_edit"
+                        android:text="@string/spider_feeding_date"
+                        android:textSize="@dimen/list_font_size"
+                        app:layout_constraintLeft_toLeftOf="parent" />
+
+                    <EditText
+                        android:id="@+id/create_feeding_date_edit"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/create_feeding_date"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:importantForAutofill="no"
+                        android:inputType="date"
+                        android:minHeight="48dp"
+                        android:textSize="@dimen/list_font_size" />
+
+                    <TextView
+                        android:id="@+id/create_molting_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/create_feeding_date_edit"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="12dp"
+                        android:labelFor="@id/create_molting_date_edit"
+                        android:text="@string/spider_molting_date"
+                        android:textSize="@dimen/list_font_size" />
+
+                    <EditText
+                        android:id="@+id/create_molting_date_edit"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/create_molting_date"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:importantForAutofill="no"
+                        android:inputType="date"
+                        android:textSize="@dimen/list_font_size" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/create_name"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    android:minHeight="48dp"
-                    android:textSize="@dimen/list_font_size" />
+                    android:gravity="center">
 
+                    <Button
+                        android:id="@+id/button_create"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="@dimen/fab_margin"
+                        android:background="@color/main_purple"
+                        android:text="@string/create"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/create_photo"
+                        app:layout_constraintStart_toStartOf="@id/create_photo" />
 
-                <TextView
-                    android:id="@+id/create_sex"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/create_name_edit"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="1dp"
-                    android:labelFor="@id/create_sex_edit"
-                    android:text="@string/spider_sex"
-                    android:textSize="@dimen/list_font_size" />
-
-                <EditText
-                    android:id="@+id/create_sex_edit"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/create_sex"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    android:minHeight="48dp"
-                    android:textSize="@dimen/list_font_size" />
-
-                <TextView
-                    android:id="@+id/create_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/create_sex_edit"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    android:labelFor="@id/create_type_edit"
-                    android:text="@string/spider_type"
-                    android:textSize="@dimen/list_font_size" />
-
-                <EditText
-                    android:id="@+id/create_type_edit"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/create_type"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    android:minHeight="48dp"
-                    android:textSize="@dimen/list_font_size" />
-
-                <TextView
-                    android:id="@+id/create_age"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/create_type_edit"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    android:labelFor="@id/create_age_edit"
-                    android:text="@string/spider_age"
-                    android:textSize="@dimen/list_font_size"
-                    app:layout_constraintLeft_toLeftOf="parent" />
-
-                <EditText
-                    android:id="@+id/create_age_edit"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/create_age"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    android:minHeight="48dp"
-                    android:textSize="@dimen/list_font_size" />
-
-                <TextView
-                    android:id="@+id/create_feeding_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/create_age_edit"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    android:labelFor="@id/create_feeding_date_edit"
-                    android:text="@string/spider_feeding_date"
-                    android:textSize="@dimen/list_font_size"
-                    app:layout_constraintLeft_toLeftOf="parent" />
-
-                <EditText
-                    android:id="@+id/create_feeding_date_edit"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/create_feeding_date"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:importantForAutofill="no"
-                    android:inputType="date"
-                    android:minHeight="48dp"
-                    android:cursorVisible="false"
-                    android:focusable="false"
-                    android:textSize="@dimen/list_font_size" />
-
-                <TextView
-                    android:id="@+id/create_molting_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/create_feeding_date_edit"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
-                    android:labelFor="@id/create_molting_date_edit"
-                    android:text="@string/spider_molting_date"
-                    android:textSize="@dimen/list_font_size" />
-
-                <EditText
-                    android:id="@+id/create_molting_date_edit"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/create_molting_date"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:importantForAutofill="no"
-                    android:inputType="date"
-                    android:cursorVisible="false"
-                    android:focusable="false"
-                    android:textSize="@dimen/list_font_size" />
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-                <Button
-                    android:id="@+id/button_create"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="@dimen/fab_margin"
-                    android:background="@color/main_purple"
-                    android:text="@string/create"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/create_photo"
-                    app:layout_constraintStart_toStartOf="@id/create_photo"
-                    style="?android:attr/buttonBarButtonStyle" />
-
-                <Button
-                    android:id="@+id/button_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="@dimen/fab_margin"
-                    android:layout_marginBottom="@dimen/fab_margin"
-                    android:background="@color/main_purple"
-                    android:text="@string/previous"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/create_photo"
-                    app:layout_constraintStart_toStartOf="@id/create_photo"
-                    style="?android:attr/buttonBarButtonStyle" />
+                    <Button
+                        android:id="@+id/button_back"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/fab_margin"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="@dimen/fab_margin"
+                        android:background="@color/main_purple"
+                        android:text="@string/previous"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/create_photo"
+                        app:layout_constraintStart_toStartOf="@id/create_photo" />
 
                 </LinearLayout>
             </LinearLayout>
 
 
-    </ScrollView>
+        </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

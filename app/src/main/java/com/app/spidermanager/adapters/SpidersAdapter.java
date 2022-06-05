@@ -52,7 +52,8 @@ public class SpidersAdapter extends RecyclerView.Adapter<SpidersAdapter.SpiderVi
                 holder.photoView.getWidth(),
                 holder.photoView.getHeight())
         );*/
-        holder.sexView.setImageDrawable(current.getSex());
+        holder.sexView.setImageResource(current.getSex() ?
+                R.mipmap.female_icon : R.mipmap.male_icon);
         holder.feedingDateView.setText(current.getFeedingDate());
         holder.typeView.setText(current.getType());
         holder.nameView.setText(current.getName());

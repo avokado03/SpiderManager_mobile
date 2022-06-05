@@ -3,11 +3,9 @@ package com.app.db.entities;
 import java.util.Date;
 
 /**
- * Модель "Паук"
+ * Сущность "Паук"
  */
-public class Spider {
-    //Id
-    private final int spiderId;
+public class Spider extends BaseEntity{
     //Кличка
     private String name;
     //Возраст (в линьках)
@@ -23,11 +21,17 @@ public class Spider {
     private Date lastFeedingDate;
     // Дата последней линьки
     private Date lastMoltingDate;
+    // Оповещение
+    private Notification notification;
 
-    public Spider(int spiderId, String name, int age, String type,
+    public Spider(){
+        super(null);
+    }
+
+    public Spider(Integer id, String name, int age, String type,
                   byte[] photo, Boolean sex, Date lastFeedingDate,
                   Date lastMoltingDate) {
-        this.spiderId = spiderId;
+        super(id);
         this.name = name;
         this.age = age;
         this.type = type;
@@ -35,10 +39,6 @@ public class Spider {
         this.sex = sex;
         this.lastFeedingDate = lastFeedingDate;
         this.lastMoltingDate = lastMoltingDate;
-    }
-
-    public int getSpiderId() {
-        return spiderId;
     }
 
     public String getName() {
@@ -95,5 +95,13 @@ public class Spider {
 
     public void setLastMoltingDate(Date lastMoltingDate) {
         this.lastMoltingDate = lastMoltingDate;
+    }
+
+    public Notification getNotification() {
+        return notification;
+    }
+
+    public void setNotification(Notification notification) {
+        this.notification = notification;
     }
 }

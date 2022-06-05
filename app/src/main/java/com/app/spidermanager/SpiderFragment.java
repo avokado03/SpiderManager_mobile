@@ -59,14 +59,14 @@ public class SpiderFragment extends Fragment {
     }
 
     private void setData() {
-        itemModels.add(new SpiderItemModel( 1,"Name1", "Type1",
-                "12/02/20", null,
-                ContextCompat.getDrawable(this.requireContext(), R.drawable.male_icon_foreground)));
-        itemModels.add(new SpiderItemModel(2,"Name2", "Type2",
-                "12/02/21", null,
-                ContextCompat.getDrawable(this.requireContext(), R.drawable.female_icon_foreground)));
-        itemModels.add(new SpiderItemModel(3,"Name3", "Type3",
-                "12/02/20", null,
-                ContextCompat.getDrawable(this.requireContext(), R.drawable.unknown_sex_icon_foreground)));
+        itemModels.add(new SpiderItemModel( 1,"Name1", 5, "Type1",
+                "12/02/20","12/02/20", null,
+                true));
+        itemModels.add(new SpiderItemModel(2,"Name2", 3, "Type2",
+                "12/02/20","12/02/21", null,
+                false));
+        itemModels.add(new SpiderItemModel(3,"Name3",7, "Type3",
+                "12/02/20","12/02/20", null,
+                true));
     }
 }
