@@ -92,6 +92,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="4dp"
                         android:entries="@array/sex_variants"
+
                         android:importantForAutofill="no"
                         android:minHeight="48dp"
                         android:textSize="@dimen/list_font_size" />
@@ -140,7 +141,8 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="4dp"
                         android:importantForAutofill="no"
-                        android:inputType="text"
+                        android:inputType="number"
+                        android:text="@={spider.age}"
                         android:minHeight="48dp"
                         android:textSize="@dimen/list_font_size" />
 
@@ -232,9 +234,6 @@
 
                 </LinearLayout>
             </LinearLayout>
-
-
         </ScrollView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

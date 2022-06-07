@@ -11,33 +11,33 @@ public class CreateSpiderModel {
     // Кличка, вид
     private String name, type;
     // Возраст (в линьках)
-    private int age;
+    private String age;
     // Фото
     private byte[] photo;
     // Пол
-    private Boolean sex;
+    private int sex;
     // Дата последнего кормления
     // Дата последней линьки
-    private Date lastFeedingDate, lastMoltingDate;
+    private String lastFeedingDate, lastMoltingDate;
 
     public CreateSpiderModel(){};
 
     public CreateSpiderModel(String name, String type, int age) {
         this.name = name;
         this.type = type;
-        this.age = age;
+        this.age = Integer.toString(age);
     }
 
     public CreateSpiderModel(String name, String type, byte[] photo,
-                             Boolean sex, Date lastFeedingDate,
+                             int sex, Date lastFeedingDate,
                              Date lastMoltingDate, int age) {
         this.name = name;
         this.type = type;
         this.photo = photo;
         this.sex = sex;
-        this.lastFeedingDate = lastFeedingDate;
-        this.lastMoltingDate = lastMoltingDate;
-        this.age = age;
+        this.lastFeedingDate = Utils.dateToString(lastFeedingDate);
+        this.lastMoltingDate = Utils.dateToString(lastMoltingDate);
+        this.age = Integer.toString(age);
     }
 
     public String getName() {
@@ -52,16 +52,8 @@ public class CreateSpiderModel {
         this.type = type;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getType() {
         return type;
-    }
-
-    public int getAge() {
-        return age;
     }
 
     public byte[] getPhoto() {
@@ -72,27 +64,35 @@ public class CreateSpiderModel {
         this.photo = photo;
     }
 
-    public Boolean getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(Boolean sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 
     public String getLastFeedingDate() {
-        return Utils.dateToString(lastFeedingDate);
+        return lastFeedingDate;
     }
 
-    public void setLastFeedingDate(Date lastFeedingDate) {
+    public void setLastFeedingDate(String lastFeedingDate) {
         this.lastFeedingDate = lastFeedingDate;
     }
 
-    public Date getLastMoltingDate() {
+    public String getLastMoltingDate() {
         return lastMoltingDate;
     }
 
-    public void setLastMoltingDate(Date lastMoltingDate) {
+    public void setLastMoltingDate(String lastMoltingDate) {
         this.lastMoltingDate = lastMoltingDate;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 }

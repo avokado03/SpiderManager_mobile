@@ -15,7 +15,7 @@ public class NotificationsRepository extends RepositoryBase<Notification> {
     public NotificationsRepository(Context context) {
         super(context);
         tableName = "Notifications";
-        primaryField = "NotificationId";
+        primaryField = "NotificationsId";
         spidersRepository = new SpidersRepository(context);
     }
 

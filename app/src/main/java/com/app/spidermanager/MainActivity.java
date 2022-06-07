@@ -2,6 +2,7 @@ package com.app.spidermanager;
 
 import android.os.Bundle;
 
+import com.app.db.DbHelper;
 import com.app.spidermanager.R;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -20,11 +21,14 @@ import com.app.spidermanager.databinding.ActivityMainBinding;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
     private NavController navController;
+    private DbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        dbHelper = new DbHelper(getApplicationContext());
+        try {
+            dbHelper.createDb();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         setSupportActionBar(binding.toolbar);
 

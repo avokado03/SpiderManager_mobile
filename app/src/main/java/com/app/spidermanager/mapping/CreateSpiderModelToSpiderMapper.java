@@ -6,6 +6,7 @@ import android.util.Log;
 import com.app.db.entities.Spider;
 import com.app.spidermanager.models.CreateSpiderModel;
 import com.app.spidermanager.models.SpiderItemModel;
+import com.app.spidermanager.utils.Utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,13 +17,12 @@ public class CreateSpiderModelToSpiderMapper implements IMapper<CreateSpiderMode
         return new Spider(
                 null,
                 spiderItemModel.getName(),
-                spiderItemModel.getAge(),
+                Integer.parseInt(spiderItemModel.getAge()),
                 spiderItemModel.getType(),
                 spiderItemModel.getPhoto(),
-                spiderItemModel.getSex(),
-                spiderItemModel.getLastFeedingDate(),
-                spiderItemModel.getLastMoltingDate()
+                MappingHelpers.intSexToBoolean(spiderItemModel.getSex()),
+                Utils.stringToDate(spiderItemModel.getLastFeedingDate()),
+                Utils.stringToDate(spiderItemModel.getLastMoltingDate())
         );
-
     }
 }

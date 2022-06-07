@@ -14,14 +14,14 @@ public class SpidersRepository extends RepositoryBase<Spider> {
     public SpidersRepository(Context context) {
         super(context);
         tableName = "Spiders";
-        primaryField = "SpiderId";
+        primaryField = "SpidersId";
     }
 
     @SuppressLint("Range")
     @Override
     protected Spider cursorToEntity(Cursor cursor) {
         return new Spider(
-                cursor.getInt(cursor.getColumnIndex("SpiderId")),
+                cursor.getInt(cursor.getColumnIndex(primaryField)),
                 cursor.getString(cursor.getColumnIndex("Name")),
                 cursor.getInt(cursor.getColumnIndex("Age")),
                 cursor.getString(cursor.getColumnIndex("Type")),
@@ -35,7 +35,7 @@ public class SpidersRepository extends RepositoryBase<Spider> {
     @Override
     protected ContentValues entityToContentValues(Spider entity) {
         ContentValues values = new ContentValues();
-        values.put("SpiderId", entity.getId());
+        values.put(primaryField, entity.getId());
         values.put("Name", entity.getName());
         values.put("Age", entity.getAge());
         values.put("Type", entity.getType());
