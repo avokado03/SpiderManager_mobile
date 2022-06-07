@@ -17,7 +17,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.viewbinding.ViewBinding;
 
 import com.app.spidermanager.utils.DialogUtils;
 import com.app.spidermanager.utils.Utils;
@@ -32,7 +31,7 @@ public abstract class EditableFragment extends Fragment{
     protected void setDate(EditText editText){
         Dialog dialog = DialogUtils.createDatePickerDialog(
                 this.requireContext(), (picker, year, month, day) ->
-                        editText.setText(Utils.getFormattedDateString(year,month,day)));
+                        editText.setText(Utils.dateToString(year,month,day)));
         dialog.show();
     }
 

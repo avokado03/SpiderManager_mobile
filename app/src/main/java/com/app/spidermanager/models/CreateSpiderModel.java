@@ -1,5 +1,7 @@
 package com.app.spidermanager.models;
 
+import com.app.spidermanager.utils.Utils;
+
 import java.util.Date;
 
 /**
@@ -7,9 +9,9 @@ import java.util.Date;
  */
 public class CreateSpiderModel {
     // Кличка, вид
-    private final String name, type;
+    private String name, type;
     // Возраст (в линьках)
-    private final int age;
+    private int age;
     // Фото
     private byte[] photo;
     // Пол
@@ -18,6 +20,7 @@ public class CreateSpiderModel {
     // Дата последней линьки
     private Date lastFeedingDate, lastMoltingDate;
 
+    public CreateSpiderModel(){};
 
     public CreateSpiderModel(String name, String type, int age) {
         this.name = name;
@@ -39,6 +42,18 @@ public class CreateSpiderModel {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getType() {
@@ -65,8 +80,8 @@ public class CreateSpiderModel {
         this.sex = sex;
     }
 
-    public Date getLastFeedingDate() {
-        return lastFeedingDate;
+    public String getLastFeedingDate() {
+        return Utils.dateToString(lastFeedingDate);
     }
 
     public void setLastFeedingDate(Date lastFeedingDate) {

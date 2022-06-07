@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Класс со вспомогательными методами
@@ -26,11 +27,15 @@ public class Utils {
     }
 
     // region Даты
-        @SuppressLint("SimpleDateFormat")
-        public static String getFormattedDateString(int year, int month, int day){
+        public static String dateToString(int year, int month, int day){
             Calendar newDate = Calendar.getInstance();
             newDate.set(year,month,day);
-            return new SimpleDateFormat("dd.MM.yyyy").format(newDate.getTime());
+            return dateToString(newDate.getTime());
+        }
+
+        @SuppressLint("SimpleDateFormat")
+        public static String dateToString(Date date){
+            return new SimpleDateFormat("dd.MM.yyyy").format(date);
         }
     // endregion
 }

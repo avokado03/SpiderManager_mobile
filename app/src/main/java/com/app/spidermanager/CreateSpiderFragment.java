@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,16 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.app.spidermanager.base.EditableFragment;
 import com.app.spidermanager.databinding.CreateSpiderFragmentBinding;
+import com.app.spidermanager.models.CreateSpiderModel;
+import com.app.spidermanager.services.SpidersService;
 import com.app.spidermanager.validation.EmptyStringValidator;
 import com.app.spidermanager.validation.NotZeroValidator;
 
 public class CreateSpiderFragment extends EditableFragment {
 
     private CreateSpiderFragmentBinding binding;
+    private CreateSpiderModel modelBinding;
+    private SpidersService service;
 
     @Nullable
     @Override
@@ -33,6 +38,9 @@ public class CreateSpiderFragment extends EditableFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        service = new SpidersService(view.getContext());
+        modelBinding = new CreateSpiderModel();
 
         binding.buttonBack.setOnClickListener(v ->
                 NavHostFragment.findNavController(CreateSpiderFragment.this)
@@ -50,9 +58,18 @@ public class CreateSpiderFragment extends EditableFragment {
             })
         );
 
+        binding.buttonCreate.setOnClickListener(v -> save());
+
         binding.createNameEdit.addTextChangedListener(new EmptyStringValidator(binding.createNameEdit));
         binding.createTypeEdit.addTextChangedListener(new EmptyStringValidator(binding.createTypeEdit));
         binding.createAgeEdit.addTextChangedListener(new NotZeroValidator(binding.createAgeEdit));
+
+        binding.setSpider(modelBinding);
+    }
+
+    private void save(){
+        Log.i("SPIDER_CREATE_MODEL_NAME", modelBinding.getName());
+        service.create(modelBinding);
     }
 
     @Override
