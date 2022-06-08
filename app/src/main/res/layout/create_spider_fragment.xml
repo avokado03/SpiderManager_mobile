@@ -32,10 +32,11 @@
                     android:layout_marginTop="@dimen/fab_margin"
                     android:layout_marginBottom="@dimen/fab_margin"
                     android:contentDescription="@string/default_spider"
-                    android:src="@mipmap/spider_default_foreground"
+                    android:src = "@{spider.photo ?? @drawable/spider_default_foreground_dr}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"

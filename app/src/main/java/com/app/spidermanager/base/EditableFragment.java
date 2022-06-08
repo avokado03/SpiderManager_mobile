@@ -27,7 +27,6 @@ public abstract class EditableFragment extends Fragment{
 
     protected ActivityResultLauncher<Intent> activityResultLauncher;
 
-    // TODO: дата должна быть меньше сегодняшней!!!
     protected void setDate(EditText editText){
         Dialog dialog = DialogUtils.createDatePickerDialog(
                 this.requireContext(), (picker, year, month, day) ->
@@ -35,7 +34,9 @@ public abstract class EditableFragment extends Fragment{
         dialog.show();
     }
 
-    protected void setImageBitmap(ImageView imageView, Fragment fragment) {
+    protected abstract void onSetImage(Bitmap bitmap);
+
+    protected void setImageBitmap(Fragment fragment) {
         activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
@@ -46,7 +47,7 @@ public abstract class EditableFragment extends Fragment{
                             try {
                                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(
                                         fragment.getActivity().getContentResolver(), selected);
-                                imageView.setImageBitmap(bitmap);
+                                onSetImage(bitmap);
                             } catch (IOException e) {
                                 Log.i("DEBUG", "activityResultLauncher - IOException");
                             }

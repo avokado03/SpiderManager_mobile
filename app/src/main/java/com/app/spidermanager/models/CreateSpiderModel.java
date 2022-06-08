@@ -1,5 +1,8 @@
 package com.app.spidermanager.models;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+
 import com.app.spidermanager.utils.Utils;
 
 import java.util.Date;
@@ -13,7 +16,7 @@ public class CreateSpiderModel {
     // Возраст (в линьках)
     private String age;
     // Фото
-    private byte[] photo;
+    private Drawable photo;
     // Пол
     private int sex;
     // Дата последнего кормления
@@ -26,14 +29,15 @@ public class CreateSpiderModel {
         this.name = name;
         this.type = type;
         this.age = Integer.toString(age);
+        this.photo = null;
     }
 
-    public CreateSpiderModel(String name, String type, byte[] photo,
+    public CreateSpiderModel(String name, String type,
                              int sex, Date lastFeedingDate,
                              Date lastMoltingDate, int age) {
         this.name = name;
         this.type = type;
-        this.photo = photo;
+        this.photo = null;
         this.sex = sex;
         this.lastFeedingDate = Utils.dateToString(lastFeedingDate);
         this.lastMoltingDate = Utils.dateToString(lastMoltingDate);
@@ -56,11 +60,11 @@ public class CreateSpiderModel {
         return type;
     }
 
-    public byte[] getPhoto() {
+    public Drawable getPhoto() {
         return photo;
     }
 
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(Drawable photo) {
         this.photo = photo;
     }
 

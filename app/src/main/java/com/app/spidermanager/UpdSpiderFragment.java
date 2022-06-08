@@ -2,6 +2,7 @@ package com.app.spidermanager;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -26,9 +27,14 @@ public class UpdSpiderFragment extends EditableFragment {
             Bundle savedInstanceState
     ) {
         binding = UpdSpiderFragmentBinding.inflate(inflater, container, false);
-        setImageBitmap(binding.updPhoto, UpdSpiderFragment.this);
+        setImageBitmap(UpdSpiderFragment.this);
 
         return binding.getRoot();
+    }
+
+    @Override
+    protected void onSetImage(Bitmap bitmap) {
+        binding.updPhoto.setImageBitmap(bitmap);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

@@ -19,7 +19,7 @@ public class CreateSpiderModelToSpiderMapper implements IMapper<CreateSpiderMode
                 spiderItemModel.getName(),
                 Integer.parseInt(spiderItemModel.getAge()),
                 spiderItemModel.getType(),
-                spiderItemModel.getPhoto(),
+                Utils.getByteArrayFromDrawable(spiderItemModel.getPhoto()),
                 MappingHelpers.intSexToBoolean(spiderItemModel.getSex()),
                 Utils.stringToDate(spiderItemModel.getLastFeedingDate()),
                 Utils.stringToDate(spiderItemModel.getLastMoltingDate())

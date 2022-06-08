@@ -13,14 +13,14 @@ public class Notification extends BaseEntity {
     // Паук
     private Spider spider;
 
-    public Notification(int id, int spiderId, int period, boolean notificationNeeded) {
+    public Notification(Integer id, int spiderId, int period, boolean notificationNeeded) {
         super(id);
         this.spiderId = spiderId;
         this.period = period;
         this.notificationNeeded = notificationNeeded;
     }
 
-    public Notification(int id, int period, boolean notificationNeeded) {
+    public Notification(Integer id, int period, boolean notificationNeeded) {
         super(id);
         this.period = period;
         this.notificationNeeded = notificationNeeded;

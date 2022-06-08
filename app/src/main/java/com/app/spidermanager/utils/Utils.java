@@ -1,10 +1,14 @@
 package com.app.spidermanager.utils;
 
 import android.annotation.SuppressLint;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
+import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,6 +31,17 @@ public class Utils {
     public static Bitmap getBitmapFromArray(byte[] array, int width, int height) {
         Bitmap bitmap = BitmapFactory.decodeByteArray(array, 0, array.length);
         return Bitmap.createScaledBitmap(bitmap, width, height, false);
+    }
+
+    public static Drawable getDrawableFromBitmap(Bitmap img){
+        return new BitmapDrawable(Resources.getSystem(), img);
+    }
+
+    public static byte[] getByteArrayFromDrawable(Drawable img){
+        Bitmap bitmap = ((BitmapDrawable)img).getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        return stream.toByteArray();
     }
 
     // region Даты

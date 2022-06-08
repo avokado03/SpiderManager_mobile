@@ -2,12 +2,12 @@ package com.app.spidermanager.validation;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.Button;
 import android.widget.TextView;
 
-import java.text.ParseException;
-
-public abstract class TextValidator implements TextWatcher {
+public abstract class TextValidator implements TextWatcher{
     private final TextView textView;
+
 
     public TextValidator(TextView textView) {
         this.textView = textView;
@@ -22,8 +22,12 @@ public abstract class TextValidator implements TextWatcher {
     }
 
     @Override
-    final public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+    final public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
 
     @Override
-    final public void onTextChanged(CharSequence s, int start, int before, int count) { }
+    final public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
 }

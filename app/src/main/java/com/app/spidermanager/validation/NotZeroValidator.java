@@ -11,7 +11,7 @@ public class NotZeroValidator extends TextValidator{
 
     @Override
     public void validate(TextView textView, String text){
-        boolean result = text.equals("0") || text.equals("");
+        boolean result = ValidationHelpers.isZero(text);
         if (result) textView.setError(zero_value_message);
     }
 }

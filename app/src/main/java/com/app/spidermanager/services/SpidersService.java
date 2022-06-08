@@ -2,21 +2,25 @@ package com.app.spidermanager.services;
 
 import android.content.Context;
 
+import com.app.db.entities.Notification;
 import com.app.spidermanager.mapping.CreateSpiderModelToSpiderMapper;
 import com.app.spidermanager.mapping.SpiderToSpiderItemModelMapper;
 import com.app.spidermanager.mapping.UpdSpiderModelToSpiderMapper;
 import com.app.spidermanager.models.CreateSpiderModel;
 import com.app.spidermanager.models.SpiderItemModel;
 import com.app.spidermanager.models.UpdSpiderModel;
+import com.app.spidermanager.repositories.NotificationsRepository;
 import com.app.spidermanager.repositories.SpidersRepository;
 
 import java.util.ArrayList;
 
 public class SpidersService {
     protected SpidersRepository spidersRepository;
+    protected NotificationsRepository notificationsRepository;
 
     public SpidersService(Context context) {
         spidersRepository = new SpidersRepository(context);
+        notificationsRepository = new NotificationsRepository(context);
     }
 
     public ArrayList<SpiderItemModel> getAll(){
@@ -26,9 +30,12 @@ public class SpidersService {
         return items;
     }
 
-    public CreateSpiderModel create(CreateSpiderModel createSpiderModel){
-        spidersRepository.create(new CreateSpiderModelToSpiderMapper().map(createSpiderModel));
-        return createSpiderModel;
+    public int create(CreateSpiderModel createSpiderModel){
+        int newSpiderId = spidersRepository.create(new CreateSpiderModelToSpiderMapper().
+                map(createSpiderModel));
+        int notificationId = notificationsRepository.create(
+                new Notification(null, newSpiderId, 1, false));
+        return newSpiderId;
     }
 
     public UpdSpiderModel update(UpdSpiderModel updSpiderModel){

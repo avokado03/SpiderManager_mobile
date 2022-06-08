@@ -9,7 +9,7 @@ public class EmptyStringValidator extends TextValidator{
 
     @Override
     public void validate(TextView textView, String text) {
-        boolean result = text.isEmpty() || text.trim().isEmpty();
+        boolean result = ValidationHelpers.isEmpty(text);
         if(result)
             textView.setError(ErrorMessages.not_empty_message);
     }
