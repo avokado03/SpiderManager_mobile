@@ -26,6 +26,8 @@ import com.app.spidermanager.validation.EmptyStringValidator;
 import com.app.spidermanager.validation.NotZeroValidator;
 import com.app.spidermanager.validation.TextValidator;
 
+import java.util.Date;
+
 public class CreateSpiderFragment extends EditableFragment {
 
     private CreateSpiderFragmentBinding binding;
@@ -53,6 +55,11 @@ public class CreateSpiderFragment extends EditableFragment {
 
         service = new SpidersService(view.getContext());
         modelBinding = new CreateSpiderModel();
+        modelBinding.setName("test");
+        modelBinding.setAge("12");
+        modelBinding.setType("test");
+        modelBinding.setLastFeedingDate("10.05.2022");
+        modelBinding.setLastMoltingDate("10.05.2022");
 
         binding.buttonBack.setOnClickListener(v ->
                 NavHostFragment.findNavController(CreateSpiderFragment.this)
@@ -99,8 +106,8 @@ public class CreateSpiderFragment extends EditableFragment {
     private void save() {
         Log.i("SPIDER_CREATE_MODEL_NAME", modelBinding.getName());
         try {
-            service.create(modelBinding);
-            Toast.makeText(this.getContext(), "Сохранено",
+            int id = service.create(modelBinding);
+            Toast.makeText(this.getContext(), String.format("Сохранено, ID = %s", id),
                     Toast.LENGTH_SHORT).show();
         } catch (Exception ex) {
             Log.i("CREATE SPIDER", ex.getMessage());

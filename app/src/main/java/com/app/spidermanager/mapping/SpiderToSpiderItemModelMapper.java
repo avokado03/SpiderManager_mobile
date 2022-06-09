@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 
 import com.app.db.entities.Spider;
 import com.app.spidermanager.models.SpiderItemModel;
+import com.app.spidermanager.utils.Utils;
 
 import java.text.SimpleDateFormat;
 
@@ -18,8 +19,8 @@ public class SpiderToSpiderItemModelMapper implements IMapper<Spider, SpiderItem
                 spider.getAge(),
                 spider.getType(),
                 format.format(spider.getLastFeedingDate()),
+                Utils.getDrawableFromArray(spider.getPhoto()),
                 format.format(spider.getLastMoltingDate()),
-                spider.getPhoto(),
                 spider.getSex()
         );
     }

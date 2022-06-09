@@ -36,12 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-  /*      dbHelper = new DbHelper(getApplicationContext());
+        dbHelper = new DbHelper(getApplicationContext());
         try {
             dbHelper.createDb();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
 
         setSupportActionBar(binding.toolbar);
 

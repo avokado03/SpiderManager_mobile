@@ -33,12 +33,25 @@ public class Utils {
         return Bitmap.createScaledBitmap(bitmap, width, height, false);
     }
 
-    public static Drawable getDrawableFromBitmap(Bitmap img){
+    public static Drawable getDrawableFromArray(byte[] array) {
+        BitmapDrawable result = null;
+        try {
+            if (array.length != 0)
+                result = new BitmapDrawable(Resources.getSystem(),
+                        BitmapFactory.decodeByteArray(array, 0, array.length));
+        } catch (NullPointerException ignored) {}
+        return result;
+    }
+
+    public static Drawable getDrawableFromBitmap(Bitmap img) {
         return new BitmapDrawable(Resources.getSystem(), img);
     }
 
-    public static byte[] getByteArrayFromDrawable(Drawable img){
-        Bitmap bitmap = ((BitmapDrawable)img).getBitmap();
+    public static byte[] getByteArrayFromDrawable(Drawable img) {
+        if (img == null) return null;
+        Bitmap bitmap = ((BitmapDrawable) img).getBitmap();
+        bitmap = Bitmap.createScaledBitmap(bitmap,
+                (int) (bitmap.getWidth() * 0.3), (int) (bitmap.getHeight() * 0.3), true);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         return stream.toByteArray();

@@ -1,23 +1,37 @@
 package com.app.spidermanager.models;
 
+import android.graphics.drawable.Drawable;
+
 /**
  * Модель для представления записи
  * о пауке в списке
  */
 public class SpiderItemModel extends ModelWithId{
     // Кличка, вид, дата последнего кормления, дата последней линьки
-    private final String name, type, feedingDate, moltingDate;
+    private String name, type, feedingDate, moltingDate;
     // Фото
-    private final byte[] photo;
+    private Drawable photo;
     // Пол
-    private final boolean sex;
+    private Boolean sex;
     // Возраст
-    private final int age;
+    private int age;
 
     public SpiderItemModel(int id, String name, int age, String type,
                            String feedingDate,
-                           String moltingDate,
-                           byte[] photo, boolean sex) {
+                           String moltingDate, Boolean sex) {
+        super(id);
+        this.name = name;
+        this.age = age;
+        this.type = type;
+        this.feedingDate = feedingDate;
+        this.moltingDate = moltingDate;
+        this.photo = null;
+        this.sex = sex;
+    }
+
+    public SpiderItemModel(int id, String name, int age, String type,
+                           String feedingDate, Drawable photo,
+                           String moltingDate, Boolean sex) {
         super(id);
         this.name = name;
         this.age = age;
@@ -32,27 +46,56 @@ public class SpiderItemModel extends ModelWithId{
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getType() {
         return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getFeedingDate() {
         return feedingDate;
     }
 
-    public byte[] getPhoto() {
+    public void setFeedingDate(String feedingDate) {
+        this.feedingDate = feedingDate;
+    }
+
+    public String getMoltingDate() {
+        return moltingDate;
+    }
+
+    public void setMoltingDate(String moltingDate) {
+        this.moltingDate = moltingDate;
+    }
+
+    public Drawable getPhoto() {
         return photo;
     }
 
-    public boolean getSex() {
+    public void setPhoto(Drawable photo) {
+        this.photo = photo;
+    }
+
+    public Boolean getSex() {
         return sex;
+    }
+
+    public void setSex(Boolean sex) {
+        this.sex = sex;
     }
 
     public int getAge() {
         return age;
     }
 
-    public String getMoltingDate() {
-        return moltingDate;
+    public void setAge(int age) {
+        this.age = age;
     }
+
 }

@@ -14,13 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.spidermanager.adapters.SpidersAdapter;
 import com.app.spidermanager.databinding.SpidersFragmentBinding;
 import com.app.spidermanager.models.SpiderItemModel;
+import com.app.spidermanager.models.SpiderListModel;
+import com.app.spidermanager.services.SpidersService;
 
 import java.util.ArrayList;
 
 public class SpiderFragment extends Fragment {
 
     private SpidersFragmentBinding binding;
-    private ArrayList<SpiderItemModel> itemModels;
+    private SpiderListModel<SpiderItemModel> bindingModel;
+    private SpidersService spidersService;
 
     @Override
     public View onCreateView(
@@ -32,23 +35,22 @@ public class SpiderFragment extends Fragment {
         binding.buttonAddSpider.setOnClickListener(v ->
                 NavHostFragment.findNavController(SpiderFragment.this)
                 .navigate(R.id.action_SpidersFragment_to_CreateSpiderFragment));
-
         return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        itemModels = new ArrayList<>();
+        spidersService = new SpidersService(getContext());
+        setBindingModel();
         buildSpiderList();
     }
 
     private void buildSpiderList() {
         RecyclerView recyclerView = requireView().findViewById(R.id.spiders_list);
-        setData();
         SpidersAdapter.OnSpiderClickListener listener = (model, position) ->
                 NavHostFragment.findNavController(SpiderFragment.this)
                 .navigate(R.id.action_SpidersFragment_to_UpdSpiderFragment);
-        SpidersAdapter adapter = new SpidersAdapter(this.requireContext(), listener, itemModels);
+        SpidersAdapter adapter = new SpidersAdapter(this.requireContext(), listener, bindingModel);
         recyclerView.setAdapter(adapter);
     }
 
@@ -58,15 +60,8 @@ public class SpiderFragment extends Fragment {
         binding = null;
     }
 
-    private void setData() {
-        itemModels.add(new SpiderItemModel( 1,"Name1", 5, "Type1",
-                "12/02/20","12/02/20", null,
-                true));
-        itemModels.add(new SpiderItemModel(2,"Name2", 3, "Type2",
-                "12/02/20","12/02/21", null,
-                false));
-        itemModels.add(new SpiderItemModel(3,"Name3",7, "Type3",
-                "12/02/20","12/02/20", null,
-                true));
+    private void setBindingModel(){
+        ArrayList<SpiderItemModel> items = spidersService.getAll();
+        bindingModel = new SpiderListModel<>(items);
     }
 }

@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 
 /**
  * Хэлпер для собственной
@@ -21,7 +20,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "spiders.db";
     public static final int DB_VERSION = 1;
     private final String dbPath;
-    private final File dbFile = new File(getDbPath());
+    private final File dbFile;
 
     private SQLiteDatabase db;
     private final Context context;
@@ -29,7 +28,9 @@ public class DbHelper extends SQLiteOpenHelper {
     public DbHelper(Context context){
         super(context, DB_NAME, null, DB_VERSION);
         this.context = context;
-        this.dbPath = "/data/data/" + context.getPackageName() + "/databases/";
+        String p = context.getPackageName();
+        this.dbPath = "/data/data/" + p + "/databases/";
+        this.dbFile = new File(getDbPath());
     }
 
     /**
@@ -45,34 +46,11 @@ public class DbHelper extends SQLiteOpenHelper {
     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-    }
-
-    @Override
-    public synchronized SQLiteDatabase getWritableDatabase() {
-
-        if(!dbFile.exists()){
-            SQLiteDatabase db = super.getWritableDatabase();
-            try {
-                copyDb();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            createDb();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return super.getWritableDatabase();
-    }
-
-    @Override
-    public synchronized SQLiteDatabase getReadableDatabase() {
-        if(!dbFile.exists()){
-            SQLiteDatabase db = super.getReadableDatabase();
-            try {
-                copyDb();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return super.getReadableDatabase();
     }
 
     /**
@@ -98,12 +76,14 @@ public class DbHelper extends SQLiteOpenHelper {
      * если его еще не существует
      */
     public void createDb() throws IOException{
-            try{
+        boolean dbCheck = dbFile.exists();
+        if(!dbCheck){
+            try {
                 copyDb();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            catch (IOException ex){
-                Log.e("SpiderManager-createDB", ex.getMessage());
-            }
+        }
     }
 
     /**
