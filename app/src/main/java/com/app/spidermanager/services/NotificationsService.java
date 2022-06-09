@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.app.spidermanager.mapping.CreateNotificationModelToNotificationMapper;
 import com.app.spidermanager.mapping.NotificationToNotificationItemModelMapper;
+import com.app.spidermanager.mapping.NotificationToUpdNotificationModelMapper;
 import com.app.spidermanager.mapping.UpdNotificationModelToNotificationMapper;
 import com.app.spidermanager.models.CreateNotificationModel;
 import com.app.spidermanager.models.NotificationItemModel;
@@ -27,6 +28,10 @@ public class NotificationsService {
         notificationsRepository.all().forEach(notification
                 -> items.add(new NotificationToNotificationItemModelMapper().map(notification)));
         return items;
+    }
+
+    public UpdNotificationModel getById(int id){
+        return new NotificationToUpdNotificationModelMapper().map(notificationsRepository.get(id));
     }
 
     public CreateNotificationModel create(CreateNotificationModel createNotificationModel) {

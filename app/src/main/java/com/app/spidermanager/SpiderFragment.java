@@ -47,9 +47,12 @@ public class SpiderFragment extends Fragment {
 
     private void buildSpiderList() {
         RecyclerView recyclerView = requireView().findViewById(R.id.spiders_list);
-        SpidersAdapter.OnSpiderClickListener listener = (model, position) ->
+        SpidersAdapter.OnSpiderClickListener listener = (model, position) -> {
+                Bundle bundle = new Bundle();
+                bundle.putInt("spiderId", model.getId());
                 NavHostFragment.findNavController(SpiderFragment.this)
-                .navigate(R.id.action_SpidersFragment_to_UpdSpiderFragment);
+                .navigate(R.id.action_SpidersFragment_to_UpdSpiderFragment, bundle);
+        };
         SpidersAdapter adapter = new SpidersAdapter(this.requireContext(), listener, bindingModel);
         recyclerView.setAdapter(adapter);
     }

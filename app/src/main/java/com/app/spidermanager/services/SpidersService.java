@@ -5,6 +5,7 @@ import android.content.Context;
 import com.app.db.entities.Notification;
 import com.app.spidermanager.mapping.CreateSpiderModelToSpiderMapper;
 import com.app.spidermanager.mapping.SpiderToSpiderItemModelMapper;
+import com.app.spidermanager.mapping.SpiderToUpdSpiderModelMapper;
 import com.app.spidermanager.mapping.UpdSpiderModelToSpiderMapper;
 import com.app.spidermanager.models.CreateSpiderModel;
 import com.app.spidermanager.models.SpiderItemModel;
@@ -28,6 +29,10 @@ public class SpidersService {
         spidersRepository.all().forEach(spider ->
                 items.add(new SpiderToSpiderItemModelMapper().map(spider)));
         return items;
+    }
+
+    public UpdSpiderModel getById(int id){
+        return new SpiderToUpdSpiderModelMapper().map(spidersRepository.get(id));
     }
 
     public int create(CreateSpiderModel createSpiderModel){

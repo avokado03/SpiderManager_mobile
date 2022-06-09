@@ -42,7 +42,7 @@
             android:layout_marginTop="@dimen/fab_margin"
             android:layout_marginStart="@dimen/fab_margin"
             android:contentDescription="@string/default_spider"
-            android:src="@{spider.sex == null ? @drawable/unknown_sex_icon_foreground : (spider.sex ? @drawable/female_icon_foreground : @drawable/male_icon_foreground)}"
+            android:src="@{spider.sex == 2 ? @drawable/unknown_sex_icon_foreground : (spider.sex == 1 ? @drawable/female_icon_foreground : @drawable/male_icon_foreground)}"
             app:layout_constraintLeft_toRightOf="@id/photo"
             app:layout_constraintTop_toBottomOf="@id/name" />
 

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.app.db.entities.Spider;
+import com.app.spidermanager.mapping.MappingHelpers;
 
 import java.util.Date;
 import java.util.List;
@@ -26,7 +27,7 @@ public class SpidersRepository extends RepositoryBase<Spider> {
                 cursor.getInt(cursor.getColumnIndex("Age")),
                 cursor.getString(cursor.getColumnIndex("Type")),
                 cursor.getBlob(cursor.getColumnIndex("Photo")),
-                cursor.getInt(cursor.getColumnIndex("Sex")) == 1,
+                cursor.getInt(cursor.getColumnIndex("Sex")),
                 new Date(cursor.getLong(cursor.getColumnIndex("LastFeedingDate"))),
                 new Date(cursor.getLong(cursor.getColumnIndex("LastMoltingDate")))
         );

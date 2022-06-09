@@ -1,5 +1,9 @@
 package com.app.spidermanager.models;
 
+import android.graphics.drawable.Drawable;
+
+import com.app.spidermanager.utils.Utils;
+
 import java.util.Date;
 
 /**
@@ -8,19 +12,18 @@ import java.util.Date;
  */
 public class UpdSpiderModel extends ModelWithId{
     // Возраст
-    private Integer age;
     // Кличка, вид
-    private String name, type;
+    private String age, name, type;
     // Фото
-    private byte[] photo;
+    private Drawable photo;
     // Пол
-    private Boolean sex;
+    private int sex;
     // Дата последнего кормления, дата последней линьки
-    private Date lastFeedingDate, lastMoltingDate;
+    private String lastFeedingDate, lastMoltingDate;
 
 
-    public UpdSpiderModel(int id, Integer age, String name, String type,
-                          byte[] photo, Boolean sex,
+    public UpdSpiderModel(int id, String age, String name, String type,
+                          Drawable photo, int sex,
                           Date lastFeedingDate, Date lastMoltingDate) {
         super(id);
         this.age = age;
@@ -28,15 +31,15 @@ public class UpdSpiderModel extends ModelWithId{
         this.type = type;
         this.photo = photo;
         this.sex = sex;
-        this.lastFeedingDate = lastFeedingDate;
-        this.lastMoltingDate = lastMoltingDate;
+        this.lastFeedingDate = Utils.dateToString(lastFeedingDate);
+        this.lastMoltingDate = Utils.dateToString(lastMoltingDate);
     }
 
-    public Integer getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -56,35 +59,35 @@ public class UpdSpiderModel extends ModelWithId{
         this.type = type;
     }
 
-    public byte[] getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
-    }
-
-    public Boolean getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(Boolean sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 
-    public Date getLastFeedingDate() {
+    public Drawable getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Drawable photo) {
+        this.photo = photo;
+    }
+
+    public String getLastFeedingDate() {
         return lastFeedingDate;
     }
 
-    public void setLastFeedingDate(Date lastFeedingDate) {
+    public void setLastFeedingDate(String lastFeedingDate) {
         this.lastFeedingDate = lastFeedingDate;
     }
 
-    public Date getLastMoltingDate() {
+    public String getLastMoltingDate() {
         return lastMoltingDate;
     }
 
-    public void setLastMoltingDate(Date lastMoltingDate) {
+    public void setLastMoltingDate(String lastMoltingDate) {
         this.lastMoltingDate = lastMoltingDate;
     }
 }

@@ -19,10 +19,10 @@ import java.util.Date;
  */
 public class Utils {
 
+    // region Изображения
     /**
      * Преобразует массив байтов
      * в изображение
-     *
      * @param array  массив байтов
      * @param width  ширина изображения
      * @param height высота изображения
@@ -56,6 +56,7 @@ public class Utils {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         return stream.toByteArray();
     }
+    // endregion
 
     // region Даты
     public static String dateToString(int year, int month, int day) {
@@ -81,4 +82,6 @@ public class Utils {
         return date;
     }
     // endregion
+
+
 }

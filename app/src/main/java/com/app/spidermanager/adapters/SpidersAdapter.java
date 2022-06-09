@@ -45,21 +45,11 @@ public class SpidersAdapter extends RecyclerView.Adapter<SpidersAdapter.SpiderVi
 
     @Override
     public void onBindViewHolder(@NonNull SpiderViewHolder holder, int position) {
-        //SpiderItemModel current = spiders.get(position);
-/*        holder.photoView.setImageBitmap(Utils.getBitmapFromArray(
-                current.getPhoto(),
-                holder.photoView.getWidth(),
-                holder.photoView.getHeight())
-        );*/
-        /*holder.sexView.setImageResource(current.getSex() ?
-                R.mipmap.female_icon : R.mipmap.male_icon);*/
+        SpiderItemModel current = spiders.getItems().get(position);
         SpiderItemBinding binding = holder.getBinding();
-        binding.setSpider(spiders.getItems().get(position));
+        binding.setSpider(current);
         binding.executePendingBindings();
-//        holder.feedingDateView.setText(current.getFeedingDate());
-//        holder.typeView.setText(current.getType());
-//        holder.nameView.setText(current.getName());
-//        holder.itemView.setOnClickListener(view -> onClickListener.OnClick(current, position));
+        holder.itemView.setOnClickListener(view -> onClickListener.OnClick(current, position));
     }
 
     @Override
@@ -78,16 +68,5 @@ public class SpidersAdapter extends RecyclerView.Adapter<SpidersAdapter.SpiderVi
         public SpiderItemBinding getBinding(){
             return binding;
         }
-
-        /*final ImageView photoView, sexView;
-        final TextView nameView, typeView, feedingDateView;
-        SpiderViewHolder(@NonNull View view){
-            super(view);
-            photoView = view.findViewById(R.id.photo);
-            nameView = view.findViewById(R.id.name);
-            sexView = view.findViewById(R.id.sex);
-            typeView = view.findViewById(R.id.type);
-            feedingDateView = view.findViewById(R.id.feeding_date);
-        }*/
     }
 }

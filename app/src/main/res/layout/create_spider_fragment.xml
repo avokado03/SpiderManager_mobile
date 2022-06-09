@@ -93,7 +93,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="4dp"
                         android:entries="@array/sex_variants"
-
+                        android:selection="@={spider.sex}"
                         android:importantForAutofill="no"
                         android:minHeight="48dp"
                         android:textSize="@dimen/list_font_size" />
