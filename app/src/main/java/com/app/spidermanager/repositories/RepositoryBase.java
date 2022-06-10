@@ -68,6 +68,17 @@ public abstract class RepositoryBase<T extends BaseEntity> implements IRepositor
     }
 
     @Override
+    public void update(List<T> items) {
+        db.beginTransaction();
+        try{
+            items.forEach(this::update);
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
+    }
+
+    @Override
     public void delete(int id) {
         db.delete(tableName, getWhereClause(), new String[]{Integer.toString(id)});
     }

@@ -13,5 +13,6 @@ public interface IRepository<T extends BaseEntity>{
     T get(int id);
     int create(T item);
     T update(T item);
+    void update(List<T> items);
     void delete(int id);
 }

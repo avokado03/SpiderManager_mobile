@@ -63,6 +63,11 @@ public class SpidersRepository extends RepositoryBase<Spider> {
     }
 
     @Override
+    public void update(List<Spider> items) {
+        super.update(items);
+    }
+
+    @Override
     public Spider update(Spider item) {
         return super.update(item);
     }

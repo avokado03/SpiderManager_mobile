@@ -2,6 +2,7 @@ package com.app.spidermanager.services;
 
 import android.content.Context;
 
+import com.app.db.entities.Notification;
 import com.app.spidermanager.mapping.CreateNotificationModelToNotificationMapper;
 import com.app.spidermanager.mapping.NotificationToNotificationItemModelMapper;
 import com.app.spidermanager.mapping.NotificationToUpdNotificationModelMapper;
@@ -13,6 +14,8 @@ import com.app.spidermanager.repositories.NotificationsRepository;
 import com.app.spidermanager.repositories.SpidersRepository;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class NotificationsService {
     protected NotificationsRepository notificationsRepository;
@@ -44,6 +47,13 @@ public class NotificationsService {
         notificationsRepository.update(new UpdNotificationModelToNotificationMapper().
                 map(updNotificationModel));
         return updNotificationModel;
+    }
+
+    public void update(List<UpdNotificationModel> notifications) {
+        notificationsRepository.
+                update(notifications.stream().map(notification ->
+                                new UpdNotificationModelToNotificationMapper().map(notification)).
+                        collect(Collectors.toList()));
     }
 
     public void delete(int id) {

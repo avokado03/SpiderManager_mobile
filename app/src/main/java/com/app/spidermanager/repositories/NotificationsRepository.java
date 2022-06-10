@@ -56,6 +56,11 @@ public class NotificationsRepository extends RepositoryBase<Notification> {
     }
 
     @Override
+    public void update(List<Notification> items) {
+        super.update(items);
+    }
+
+    @Override
     public Notification update(Notification item) {
         return super.update(item);
     }
