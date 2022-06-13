@@ -55,11 +55,6 @@ public class CreateSpiderFragment extends EditableFragment {
 
         service = new SpidersService(view.getContext());
         modelBinding = new CreateSpiderModel();
-        modelBinding.setName("test");
-        modelBinding.setAge("12");
-        modelBinding.setType("test");
-        modelBinding.setLastFeedingDate("10.05.2022");
-        modelBinding.setLastMoltingDate("10.05.2022");
 
         binding.buttonBack.setOnClickListener(v ->
                 NavHostFragment.findNavController(CreateSpiderFragment.this)

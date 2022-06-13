@@ -66,7 +66,7 @@ public class NotificationService extends BroadcastReceiver {
                 (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (Build.VERSION.SDK_INT >= 26){
-            String title = "test";
+            String title = "spiders_notification";
             NotificationChannel channel = new NotificationChannel(channel_id, title, NotificationManager.IMPORTANCE_DEFAULT);
             notificationManager.createNotificationChannel(channel);
             builder.setChannelId(channel_id);
