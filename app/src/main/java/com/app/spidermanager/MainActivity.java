@@ -1,17 +1,14 @@
 package com.app.spidermanager;
 
+import android.app.AlarmManager;
 import android.os.Bundle;
 
 import com.app.db.DbHelper;
-import com.app.spidermanager.R;
-import com.google.android.material.snackbar.Snackbar;
+import com.app.notifications.NotificationService;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -22,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,6 +50,16 @@ public class MainActivity extends AppCompatActivity {
 
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
+        AlarmManager manager = (AlarmManager)getSystemService(
+                ALARM_SERVICE);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.add(Calendar.SECOND, 10);
+        long time = calendar.getTimeInMillis();
+
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, time, 1000*60, NotificationService.getPendingIntent(this));
     }
 
 
