@@ -5,12 +5,16 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.app.db.entities.Notification;
 import com.app.db.entities.Spider;
-import com.app.spidermanager.mapping.MappingHelpers;
 
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Репозиторий для сущности паука
+ * @see Spider
+ */
 public class SpidersRepository extends RepositoryBase<Spider> {
     public SpidersRepository(Context context) {
         super(context);
@@ -54,7 +58,8 @@ public class SpidersRepository extends RepositoryBase<Spider> {
 
     @Override
     public Spider get(int id) {
-        return super.get(id);
+        Spider result = super.get(id);
+        return result == null ? new Spider() : result;
     }
 
     @Override

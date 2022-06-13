@@ -2,6 +2,9 @@ package com.app.spidermanager.validation;
 
 import android.widget.TextView;
 
+/**
+ * Валидирует строки на пустоту
+ */
 public class EmptyStringValidator extends TextValidator{
     public EmptyStringValidator(TextView textView) {
         super(textView);

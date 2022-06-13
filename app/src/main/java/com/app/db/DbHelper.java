@@ -94,8 +94,6 @@ public class DbHelper extends SQLiteOpenHelper {
         try {
             InputStream inputStream = context.getAssets().open(DB_NAME);
             String dbFullPath = getDbPath();
-            if(!dbFile.exists())
-                dbFile.mkdir();
             FileOutputStream outputStream = new FileOutputStream(dbFullPath);
             byte[] buffer = new byte[1024];
             int length;

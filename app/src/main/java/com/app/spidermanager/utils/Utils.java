@@ -20,19 +20,10 @@ import java.util.Date;
 public class Utils {
 
     // region Изображения
-    /**
-     * Преобразует массив байтов
-     * в изображение
-     * @param array  массив байтов
-     * @param width  ширина изображения
-     * @param height высота изображения
-     * @return изображение с заданными шириной и высотой
-     */
-    public static Bitmap getBitmapFromArray(byte[] array, int width, int height) {
-        Bitmap bitmap = BitmapFactory.decodeByteArray(array, 0, array.length);
-        return Bitmap.createScaledBitmap(bitmap, width, height, false);
-    }
 
+    /**
+     * Получить Drawable-ресурс из байт-массива
+     */
     public static Drawable getDrawableFromArray(byte[] array) {
         BitmapDrawable result = null;
         try {
@@ -43,10 +34,16 @@ public class Utils {
         return result;
     }
 
+    /**
+     * Получить Drawable-ресурс из Bitmap-изображения
+     */
     public static Drawable getDrawableFromBitmap(Bitmap img) {
         return new BitmapDrawable(Resources.getSystem(), img);
     }
 
+    /**
+     * Преобразовать Drawable-ресурс в байт-массив
+     */
     public static byte[] getByteArrayFromDrawable(Drawable img) {
         if (img == null) return null;
         Bitmap bitmap = ((BitmapDrawable) img).getBitmap();
@@ -59,17 +56,27 @@ public class Utils {
     // endregion
 
     // region Даты
+
+    /**
+     * Получение даты в виде строки формата дд.мм.гггг
+     */
     public static String dateToString(int year, int month, int day) {
         Calendar newDate = Calendar.getInstance();
         newDate.set(year, month, day);
         return dateToString(newDate.getTime());
     }
 
+    /**
+     * Получение даты в виде строки формата дд.мм.гггг
+     */
     @SuppressLint("SimpleDateFormat")
     public static String dateToString(Date date) {
         return new SimpleDateFormat("dd.MM.yyyy").format(date);
     }
 
+    /**
+     * Преобразование строки формата дд.мм.гггг в дату
+     */
     public static Date stringToDate(String value) {
         Date date = new Date();
         try {

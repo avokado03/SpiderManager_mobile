@@ -23,7 +23,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/notifications_list">
 
         <Button
-            android:id="@+id/button_create"
+            android:id="@+id/button_save"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

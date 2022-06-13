@@ -3,6 +3,9 @@ package com.app.spidermanager.validation;
 import com.app.spidermanager.models.CreateSpiderModel;
 import com.app.spidermanager.models.UpdSpiderModel;
 
+/**
+ * Валидатор для моделей пауков
+ */
 public class SpiderModelValidator {
     public static boolean validateCreateModel (CreateSpiderModel model) {
         return validate(model.getName(), model.getType(), model.getAge());

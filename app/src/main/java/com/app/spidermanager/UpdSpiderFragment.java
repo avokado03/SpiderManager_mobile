@@ -15,7 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.app.spidermanager.base.EditableFragment;
 import com.app.spidermanager.databinding.UpdSpiderFragmentBinding;
 import com.app.spidermanager.models.UpdSpiderModel;
 import com.app.spidermanager.services.SpidersService;
@@ -25,6 +24,9 @@ import com.app.spidermanager.validation.NotZeroValidator;
 import com.app.spidermanager.validation.SpiderModelValidator;
 import com.app.spidermanager.validation.TextValidator;
 
+/**
+ * Фрагмент для обновления карточки паука
+ */
 public class UpdSpiderFragment extends EditableFragment {
 
     private UpdSpiderFragmentBinding binding;
@@ -95,25 +97,33 @@ public class UpdSpiderFragment extends EditableFragment {
 
     }
 
+    /**
+     * Назначение состояния кнопки на основе валидности модели
+     */
     public void validateUpdate() {
         boolean validationModelResult = SpiderModelValidator.validateUpdateModel(modelBinding);
         binding.buttonSave.setEnabled(!validationModelResult);
     }
 
+    /**
+     * Назначение модели привязки
+     */
     private void setBinding(int spiderId){
         modelBinding = service.getById(spiderId);
         binding.setSpider(modelBinding);
     }
 
+    /**
+     * Сохранение результата
+     */
     private void save(){
-        Log.i("SPIDER_UPDATE_MODEL_NAME", modelBinding.getName());
         try {
             UpdSpiderModel id = service.update(modelBinding);
-            Toast.makeText(this.getContext(), String.format("Сохранено, NAME = %s", id.getName()),
+            Toast.makeText(this.getContext(), "Сохранено",
                     Toast.LENGTH_SHORT).show();
         } catch (Exception ex) {
             Log.i("UPDATE SPIDER", ex.getMessage());
-            Toast.makeText(this.getContext(), "Программистка дура",
+            Toast.makeText(this.getContext(), "Ошибка!",
                     Toast.LENGTH_SHORT).show();
         }
 

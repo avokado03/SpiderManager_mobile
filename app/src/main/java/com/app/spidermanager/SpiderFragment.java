@@ -19,6 +19,9 @@ import com.app.spidermanager.services.SpidersService;
 
 import java.util.ArrayList;
 
+/**
+ * Фрагмент для отображения карточек паукоы
+ */
 public class SpiderFragment extends Fragment {
 
     private SpidersFragmentBinding binding;
@@ -45,6 +48,9 @@ public class SpiderFragment extends Fragment {
         buildSpiderList();
     }
 
+    /**
+     * Построение списка карточек
+     */
     private void buildSpiderList() {
         RecyclerView recyclerView = requireView().findViewById(R.id.spiders_list);
         SpidersAdapter.OnSpiderClickListener listener = (model, position) -> {
@@ -53,7 +59,7 @@ public class SpiderFragment extends Fragment {
                 NavHostFragment.findNavController(SpiderFragment.this)
                 .navigate(R.id.action_SpidersFragment_to_UpdSpiderFragment, bundle);
         };
-        SpidersAdapter adapter = new SpidersAdapter(this.requireContext(), listener, bindingModel);
+        SpidersAdapter adapter = new SpidersAdapter(this.requireContext(), listener, bindingModel, spidersService);
         recyclerView.setAdapter(adapter);
     }
 
@@ -63,6 +69,9 @@ public class SpiderFragment extends Fragment {
         binding = null;
     }
 
+    /**
+     * Назначение модели привязки
+     */
     private void setBindingModel(){
         ArrayList<SpiderItemModel> items = spidersService.getAll();
         bindingModel = new SpiderListModel<>(items);

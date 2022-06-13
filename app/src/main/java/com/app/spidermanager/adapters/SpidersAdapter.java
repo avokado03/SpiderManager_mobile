@@ -1,5 +1,6 @@
 package com.app.spidermanager.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +16,19 @@ import com.app.spidermanager.R;
 import com.app.spidermanager.databinding.SpiderItemBinding;
 import com.app.spidermanager.models.SpiderItemModel;
 import com.app.spidermanager.models.SpiderListModel;
+import com.app.spidermanager.services.SpidersService;
+import com.app.spidermanager.utils.DialogUtils;
 
 import java.util.List;
 
+/**
+ * Адаптер для отображения списка пауков
+ */
 public class SpidersAdapter extends RecyclerView.Adapter<SpidersAdapter.SpiderViewHolder>{
 
+    /**
+     * Интерфейс события клика по элементу списка
+     */
     public interface OnSpiderClickListener {
         void OnClick(SpiderItemModel model, int position);
     }
@@ -28,12 +37,16 @@ public class SpidersAdapter extends RecyclerView.Adapter<SpidersAdapter.SpiderVi
 
     private final LayoutInflater inflater;
     private final SpiderListModel<SpiderItemModel> spiders;
+    private final SpidersService service;
 
     public SpidersAdapter(Context context,
-                          OnSpiderClickListener onClickListener, SpiderListModel<SpiderItemModel> spiders) {
+                          OnSpiderClickListener onClickListener,
+                          SpiderListModel<SpiderItemModel> spiders,
+                          SpidersService service) {
         this.onClickListener = onClickListener;
         this.spiders = spiders;
         this.inflater = LayoutInflater.from(context);
+        this.service = service;
     }
 
     @NonNull
@@ -43,6 +56,7 @@ public class SpidersAdapter extends RecyclerView.Adapter<SpidersAdapter.SpiderVi
         return new SpiderViewHolder(view);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onBindViewHolder(@NonNull SpiderViewHolder holder, int position) {
         SpiderItemModel current = spiders.getItems().get(position);
@@ -50,6 +64,12 @@ public class SpidersAdapter extends RecyclerView.Adapter<SpidersAdapter.SpiderVi
         binding.setSpider(current);
         binding.executePendingBindings();
         holder.itemView.setOnClickListener(view -> onClickListener.OnClick(current, position));
+        holder.getBinding().buttonSpiderDelete.setOnClickListener(v ->
+            DialogUtils.createConfirmDialog(inflater.getContext(), (x, y) -> {
+            service.delete(current.getId());
+            spiders.getItems().remove(current);
+            SpidersAdapter.this.notifyDataSetChanged();
+        }).show());
     }
 
     @Override
@@ -57,6 +77,9 @@ public class SpidersAdapter extends RecyclerView.Adapter<SpidersAdapter.SpiderVi
         return spiders.getItems().size();
     }
 
+    /**
+     * Описывает содержимое списка и хранит привязки
+     */
     public static class SpiderViewHolder extends ViewHolder {
         private final SpiderItemBinding binding;
 

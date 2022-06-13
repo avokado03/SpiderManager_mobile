@@ -2,10 +2,8 @@ package com.app.spidermanager.services;
 
 import android.content.Context;
 
-import com.app.db.entities.Notification;
 import com.app.spidermanager.mapping.CreateNotificationModelToNotificationMapper;
 import com.app.spidermanager.mapping.NotificationToNotificationItemModelMapper;
-import com.app.spidermanager.mapping.NotificationToUpdNotificationModelMapper;
 import com.app.spidermanager.mapping.UpdNotificationModelToNotificationMapper;
 import com.app.spidermanager.models.CreateNotificationModel;
 import com.app.spidermanager.models.NotificationItemModel;
@@ -17,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Сервис для работы с оповещениями
+ */
 public class NotificationsService {
     protected NotificationsRepository notificationsRepository;
     protected SpidersRepository spidersRepository;
@@ -26,6 +27,9 @@ public class NotificationsService {
         spidersRepository = new SpidersRepository(context);
     }
 
+    /**
+     * Получить все оповещения
+     */
     public ArrayList<NotificationItemModel> getAll() {
         ArrayList<NotificationItemModel> items = new ArrayList<>();
         notificationsRepository.all().forEach(notification
@@ -33,30 +37,31 @@ public class NotificationsService {
         return items;
     }
 
-    public UpdNotificationModel getById(int id){
-        return new NotificationToUpdNotificationModelMapper().map(notificationsRepository.get(id));
-    }
-
+    /**
+     * Создать оповещение
+     */
     public CreateNotificationModel create(CreateNotificationModel createNotificationModel) {
         notificationsRepository.create(new CreateNotificationModelToNotificationMapper().
                 map(createNotificationModel));
         return createNotificationModel;
     }
 
+    /**
+     * Обновить оповещение
+     */
     public UpdNotificationModel update(UpdNotificationModel updNotificationModel) {
         notificationsRepository.update(new UpdNotificationModelToNotificationMapper().
                 map(updNotificationModel));
         return updNotificationModel;
     }
 
+    /**
+     * Обновить список оповещений
+     */
     public void update(List<UpdNotificationModel> notifications) {
         notificationsRepository.
                 update(notifications.stream().map(notification ->
                                 new UpdNotificationModelToNotificationMapper().map(notification)).
                         collect(Collectors.toList()));
-    }
-
-    public void delete(int id) {
-        notificationsRepository.delete(id);
     }
 }

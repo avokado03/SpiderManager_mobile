@@ -11,6 +11,10 @@ import com.app.spidermanager.utils.Utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+/**
+ * @see CreateSpiderModel
+ * @see Spider
+ */
 public class CreateSpiderModelToSpiderMapper implements IMapper<CreateSpiderModel, Spider> {
     @Override
     public Spider map(CreateSpiderModel spiderItemModel) {

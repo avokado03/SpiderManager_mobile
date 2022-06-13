@@ -16,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.app.spidermanager.base.EditableFragment;
 import com.app.spidermanager.databinding.CreateSpiderFragmentBinding;
 import com.app.spidermanager.models.CreateSpiderModel;
 import com.app.spidermanager.services.SpidersService;
@@ -26,6 +25,9 @@ import com.app.spidermanager.validation.EmptyStringValidator;
 import com.app.spidermanager.validation.NotZeroValidator;
 import com.app.spidermanager.validation.TextValidator;
 
+/**
+ * Фрагмент для создания карточки паука
+ */
 public class CreateSpiderFragment extends EditableFragment {
 
     private CreateSpiderFragmentBinding binding;
@@ -104,11 +106,17 @@ public class CreateSpiderFragment extends EditableFragment {
         binding.setSpider(modelBinding);
     }
 
-        public void validateCreation() {
-            boolean validationModelResult = SpiderModelValidator.validateCreateModel(modelBinding);
-            binding.buttonCreate.setEnabled(!validationModelResult);
-        }
+    /**
+     * Устанавливает состояние кнопки в зависимости от валидности модели
+     */
+    public void validateCreation() {
+        boolean validationModelResult = SpiderModelValidator.validateCreateModel(modelBinding);
+        binding.buttonCreate.setEnabled(!validationModelResult);
+    }
 
+    /**
+     * Сохраненение новой карточки в БД
+     */
     private void save() {
         Log.i("SPIDER_CREATE_MODEL_NAME", modelBinding.getName());
         try {

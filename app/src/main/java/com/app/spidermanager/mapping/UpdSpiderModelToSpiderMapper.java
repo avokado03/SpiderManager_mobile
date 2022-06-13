@@ -1,9 +1,15 @@
 package com.app.spidermanager.mapping;
 
+import com.app.db.entities.Notification;
 import com.app.db.entities.Spider;
+import com.app.spidermanager.models.UpdNotificationModel;
 import com.app.spidermanager.models.UpdSpiderModel;
 import com.app.spidermanager.utils.Utils;
 
+/**
+ * @see UpdSpiderModel
+ * @see Spider
+ */
 public class UpdSpiderModelToSpiderMapper implements IMapper<UpdSpiderModel, Spider> {
     @Override
     public Spider map(UpdSpiderModel updSpiderModel) {

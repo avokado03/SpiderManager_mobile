@@ -8,21 +8,30 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.spidermanager.R;
+import com.app.spidermanager.databinding.NotificationItemBinding;
+import com.app.spidermanager.databinding.SpiderItemBinding;
 import com.app.spidermanager.models.NotificationItemModel;
+import com.app.spidermanager.models.NotificationListModel;
+import com.app.spidermanager.services.NotificationsService;
 import com.app.spidermanager.validation.NotZeroValidator;
 
 import java.util.List;
 
-public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdapter.NotificationsViewHolder>{
+/**
+ * Адаптер для отображения списка оповещений
+ */
+public class NotificationsAdapter
+        extends RecyclerView.Adapter<NotificationsAdapter.NotificationsViewHolder>{
 
     private final LayoutInflater inflater;
-    private final List<NotificationItemModel> notifications;
+    private final NotificationListModel notifications;
 
     public NotificationsAdapter(Context context,
-                                List<NotificationItemModel> notifications) {
+                                NotificationListModel notifications) {
         this.inflater = LayoutInflater.from(context);
         this.notifications = notifications;
     }
@@ -36,23 +45,33 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
 
     @Override
     public void onBindViewHolder(@NonNull NotificationsAdapter.NotificationsViewHolder holder, int position) {
-        holder.periodEdit.addTextChangedListener(new NotZeroValidator(holder.periodEdit));
+        NotificationItemBinding binding = holder.getBinding();
+        binding.setNotification(notifications.getItems().get(position));
+        binding.executePendingBindings();
+        EditText periodView = holder.getBinding().notifyPeriodEdit;
+        periodView.addTextChangedListener(new NotZeroValidator(periodView));
+
     }
 
     @Override
     public int getItemCount() {
-        return notifications.size();
+        return notifications.getItems().size();
     }
 
+    /**
+     * Описывает содержимое списка и хранит привязки
+     */
     public static class NotificationsViewHolder extends RecyclerView.ViewHolder {
-        final TextView nameView, typeView;
-        final EditText periodEdit;
+        private final NotificationItemBinding binding;
 
-        public NotificationsViewHolder(@NonNull View view) {
+        public NotificationsViewHolder(View view){
             super(view);
-            nameView = view.findViewById(R.id.notify_spider_name);
-            typeView = view.findViewById(R.id.notify_spider_type);
-            periodEdit = view.findViewById(R.id.notify_period_edit);
+            binding = DataBindingUtil.bind(view);
+        }
+
+        public NotificationItemBinding getBinding(){
+            return binding;
         }
     }
+
 }
