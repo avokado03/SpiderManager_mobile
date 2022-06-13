@@ -21,9 +21,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Сервис оповещения
+ */
 public class NotificationService extends BroadcastReceiver {
-    private final String channel_id = "1";
-    private final String title = "test";
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -41,36 +42,44 @@ public class NotificationService extends BroadcastReceiver {
                 calendar.add(Calendar.DATE, notification.getPeriod());
                 Date needFeedingDate = calendar.getTime();
 
-                if (currentDate.getTime() >= needFeedingDate.getTime()) {
-                    notify(context, spider.getName());
+               if (currentDate.getTime() >= needFeedingDate.getTime()) {
+                    notify(context, spider);
 
-                    spider.setLastFeedingDate(new Date());
-                    spidersRepository.update(spider);
+                   spider.setLastFeedingDate(new Date());
+                   spidersRepository.update(spider);
                 }
             }
         });
     }
 
-    public void notify(Context context, String spiderName){
+    /**
+     * Создание и вывод оповещения
+     */
+    public void notify(Context context, Spider spider){
+        String channel_id = "1";
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channel_id)
-                .setSmallIcon(R.mipmap.notification_icon)
+                .setSmallIcon(R.mipmap.notification_icon_foreground)
                 .setContentTitle("Пора кормить паука")
-                .setContentText(String.format("Не забудьте покормить %s", spiderName));
+                .setContentText(String.format("Не забудьте покормить %s", spider.getName()));
 
         NotificationManager notificationManager =
                 (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (Build.VERSION.SDK_INT >= 26){
+            String title = "test";
             NotificationChannel channel = new NotificationChannel(channel_id, title, NotificationManager.IMPORTANCE_DEFAULT);
             notificationManager.createNotificationChannel(channel);
             builder.setChannelId(channel_id);
         }
 
         android.app.Notification not = builder.build();
-        notificationManager.notify(1, not);
+        notificationManager.notify(spider.getId(), not);
     }
 
 
+    /**
+     * Возвращает намерение, отложенное во времени
+     */
     public static PendingIntent getPendingIntent(Context context) {
         Intent action = new Intent(context, NotificationService.class);
         return PendingIntent.getBroadcast(context, 1, action, 0);

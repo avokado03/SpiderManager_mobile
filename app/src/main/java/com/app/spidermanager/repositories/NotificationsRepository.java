@@ -41,6 +41,7 @@ public class NotificationsRepository extends RepositoryBase<Notification> {
         ContentValues values = new ContentValues();
         values.put("SpiderId", entity.getSpiderId());
         values.put("Period", entity.getPeriod());
+        values.put("NotificationNeeded", entity.getNotificationNeeded());
         return values;
     }
 

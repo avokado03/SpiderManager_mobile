@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
         calendar.add(Calendar.SECOND, 10);
         long time = calendar.getTimeInMillis();
 
-        manager.setRepeating(AlarmManager.RTC_WAKEUP, time, 1000*60, NotificationService.getPendingIntent(this));
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, time, AlarmManager.INTERVAL_DAY,
+                NotificationService.getPendingIntent(this));
     }
 
 
