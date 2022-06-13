@@ -11,6 +11,10 @@ import com.app.db.entities.BaseEntity;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Базовый класс для репозипотиев сущностей БД
+ * @param <T> тип сущности
+ */
 public abstract class RepositoryBase<T extends BaseEntity> implements IRepository<T> {
     protected SQLiteDatabase db;
     protected String tableName;
@@ -49,7 +53,25 @@ public abstract class RepositoryBase<T extends BaseEntity> implements IRepositor
                 new String[]{Integer.toString(id)}, null, null, null);
         if(cursor != null){
             cursor.moveToFirst();
-            return cursorToEntity(cursor);
+            if (cursor.getCount() > 0)
+                return cursorToEntity(cursor);
+        }
+
+        return null;
+    }
+
+    /**
+     * Поиск по условию
+     * @param whereClause Фильтр WHERE
+     * @param whereArgs Аргументы фильтра
+     */
+    public T get(String whereClause, String[] whereArgs){
+        Cursor cursor = db.query(tableName, null, whereClause,
+                whereArgs, null, null, null);
+        if(cursor != null){
+            cursor.moveToFirst();
+            if (cursor.getCount() > 0)
+                return cursorToEntity(cursor);
         }
 
         return null;
@@ -68,7 +90,27 @@ public abstract class RepositoryBase<T extends BaseEntity> implements IRepositor
     }
 
     @Override
+    public void update(List<T> items) {
+        db.beginTransaction();
+        try{
+            items.forEach(this::update);
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
+    }
+
+    @Override
     public void delete(int id) {
         db.delete(tableName, getWhereClause(), new String[]{Integer.toString(id)});
+    }
+
+    /**
+     * Удаление по условию
+     * @param whereClause Фильтр WHERE
+     * @param whereArgs Аргументы фильтра
+     */
+    public void delete(String whereClause, String[] whereArgs){
+        db.delete(tableName, whereClause, whereArgs);
     }
 }

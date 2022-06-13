@@ -1,4 +1,4 @@
-package com.app.spidermanager.base;
+package com.app.spidermanager;
 
 import android.Manifest;
 import android.app.Activity;
@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -23,10 +22,16 @@ import com.app.spidermanager.utils.Utils;
 
 import java.io.IOException;
 
-public abstract class EditableFragment extends Fragment{
+/**
+ * Базовый класс для фрагментов, изменяющих сущность "Паук"
+ */
+public abstract class EditableFragment extends Fragment {
 
     protected ActivityResultLauncher<Intent> activityResultLauncher;
 
+    /**
+     * Установка даты с помощью диалога
+     */
     protected void setDate(EditText editText){
         Dialog dialog = DialogUtils.createDatePickerDialog(
                 this.requireContext(), (picker, year, month, day) ->
@@ -34,8 +39,14 @@ public abstract class EditableFragment extends Fragment{
         dialog.show();
     }
 
+    /**
+     * Перенос установленного изображения в модель
+     */
     protected abstract void onSetImage(Bitmap bitmap);
 
+    /**
+     * Выбор изображения
+     */
     protected void setImageBitmap(Fragment fragment) {
         activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -57,10 +68,16 @@ public abstract class EditableFragment extends Fragment{
         );
     }
 
+    /**
+     * Ф.интерфейс для проверки разрешений
+     */
     protected interface SuccessPermissionCheck{
         void Invoke();
     }
 
+    /**
+     * Проверка разрешений
+     */
     protected void checkPermission(String permissionName, SuccessPermissionCheck delegate){
         int permission = ContextCompat.checkSelfPermission(
                 requireContext(), permissionName);

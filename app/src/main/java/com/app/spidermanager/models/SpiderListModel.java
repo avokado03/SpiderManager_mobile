@@ -2,6 +2,9 @@ package com.app.spidermanager.models;
 
 import java.util.ArrayList;
 
+/**
+ * Пауки
+ */
 public class SpiderListModel<SpiderItemModel>
         extends ListModelBase<com.app.spidermanager.models.SpiderItemModel> {
 

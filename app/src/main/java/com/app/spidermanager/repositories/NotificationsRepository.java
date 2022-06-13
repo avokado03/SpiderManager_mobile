@@ -9,6 +9,10 @@ import com.app.db.entities.Notification;
 
 import java.util.List;
 
+/**
+ * Репозиторий для сущности оповещения
+ * @see Notification
+ */
 public class NotificationsRepository extends RepositoryBase<Notification> {
     final private SpidersRepository spidersRepository;
 
@@ -22,7 +26,7 @@ public class NotificationsRepository extends RepositoryBase<Notification> {
     @SuppressLint("Range")
     protected Notification cursorToEntity(Cursor cursor){
         Notification notification = new Notification(
-                cursor.getInt(cursor.getColumnIndex("NotificationId")),
+                cursor.getInt(cursor.getColumnIndex(primaryField)),
                 cursor.getInt(cursor.getColumnIndex("SpiderId")),
                 cursor.getInt(cursor.getColumnIndex("Period")),
                 cursor.getInt(cursor.getColumnIndex("NotificationNeeded")) == 1
@@ -56,6 +60,11 @@ public class NotificationsRepository extends RepositoryBase<Notification> {
     }
 
     @Override
+    public void update(List<Notification> items) {
+        super.update(items);
+    }
+
+    @Override
     public Notification update(Notification item) {
         return super.update(item);
     }
@@ -63,5 +72,10 @@ public class NotificationsRepository extends RepositoryBase<Notification> {
     @Override
     public void delete(int id) {
         super.delete(id);
+    }
+
+    @Override
+    public void delete(String whereClause, String[] whereArgs) {
+        super.delete(whereClause, whereArgs);
     }
 }

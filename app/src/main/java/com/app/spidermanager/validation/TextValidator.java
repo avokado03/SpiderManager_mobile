@@ -5,6 +5,9 @@ import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * Базовый класс для валидаторов
+ */
 public abstract class TextValidator implements TextWatcher{
     private final TextView textView;
 
@@ -13,6 +16,9 @@ public abstract class TextValidator implements TextWatcher{
         this.textView = textView;
     }
 
+    /**
+     * Валидирует полученное значение
+     */
     public abstract void validate(TextView textView, String text);
 
     @Override

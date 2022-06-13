@@ -3,6 +3,10 @@ package com.app.spidermanager.mapping;
 import com.app.db.entities.Notification;
 import com.app.spidermanager.models.CreateNotificationModel;
 
+/**
+ * @see CreateNotificationModel
+ * @see Notification
+ */
 public class CreateNotificationModelToNotificationMapper
         implements IMapper<CreateNotificationModel, Notification> {
     @Override

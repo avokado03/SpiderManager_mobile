@@ -16,7 +16,7 @@ public class Spider extends BaseEntity{
     // Фото
     private byte[] photo;
     //Пол
-    private Boolean sex;
+    private int sex;
     // Дата последней кормежки
     private Date lastFeedingDate;
     // Дата последней линьки
@@ -29,7 +29,7 @@ public class Spider extends BaseEntity{
     }
 
     public Spider(Integer id, String name, int age, String type,
-                  byte[] photo, Boolean sex, Date lastFeedingDate,
+                  byte[] photo, int sex, Date lastFeedingDate,
                   Date lastMoltingDate) {
         super(id);
         this.name = name;
@@ -57,7 +57,7 @@ public class Spider extends BaseEntity{
         return photo;
     }
 
-    public Boolean getSex() {
+    public int getSex() {
         return sex;
     }
 
@@ -85,7 +85,7 @@ public class Spider extends BaseEntity{
         this.photo = photo;
     }
 
-    public void setSex(Boolean sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 

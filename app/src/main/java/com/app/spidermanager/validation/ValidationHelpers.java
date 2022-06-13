@@ -1,5 +1,8 @@
 package com.app.spidermanager.validation;
 
+/**
+ * Вспомогательные медоты валидации
+ */
 public class ValidationHelpers {
     public static boolean isZero(String text){
         if (text == null) return true;

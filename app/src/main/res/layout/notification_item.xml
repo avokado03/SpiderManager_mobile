@@ -1,75 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/notification_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_id_text"
-        android:visibility="invisible"
-        tools:ignore="MissingConstraints" />
+    <data>
+        <variable
+            name="notification"
+            type="com.app.spidermanager.models.NotificationItemModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/notify_spider_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fab_margin"
-        android:layout_marginTop="@dimen/fab_margin"
-        android:text="@string/spider_name"
-        android:textSize="@dimen/list_font_size"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/notify_spider_type"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fab_margin"
-        android:layout_marginTop="@dimen/fab_margin"
-        android:text="@string/spider_type"
-        android:textSize="@dimen/list_font_size"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/notify_spider_name" />
+        <TextView
+            android:id="@+id/notify_spider_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="@{notification.name}"
+            android:textSize="@dimen/list_font_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/notify_period_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:labelFor="@id/notify_period_edit"
-        android:text="@string/notify_period"
-        android:textSize="@dimen/list_font_size"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="172dp"
-        tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/notify_spider_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="@{notification.type}"
+            android:textSize="@dimen/list_font_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notify_spider_name" />
 
-    <EditText
-        android:id="@+id/notify_period_edit"
-        android:layout_width="72dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        android:maxHeight="48dp"
-        android:text="@string/notify_period_default"
-        app:layout_constraintEnd_toEndOf="@+id/notify_period_label"
-        app:layout_constraintHorizontal_bias="0.366"
-        app:layout_constraintStart_toStartOf="@+id/notify_period_label"
-        app:layout_constraintTop_toBottomOf="@+id/notify_period_label"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        <TextView
+            android:id="@+id/notify_period_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="116dp"
+            android:labelFor="@id/notify_period_edit"
+            android:text="@string/notify_period"
+            android:textSize="@dimen/list_font_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
-    <CheckBox
-        android:id="@+id/notify_state"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.491"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="362dp" />
+        <EditText
+            android:id="@+id/notify_period_edit"
+            android:layout_width="72dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:maxHeight="48dp"
+            android:text="@={notification.period}"
+            app:layout_constraintEnd_toEndOf="@+id/notify_period_label"
+            app:layout_constraintHorizontal_bias="0.366"
+            app:layout_constraintStart_toStartOf="@+id/notify_period_label"
+            app:layout_constraintTop_toBottomOf="@+id/notify_period_label"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <CheckBox
+            android:id="@+id/notify_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:checked="@={notification.notificationNeeded}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.459"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

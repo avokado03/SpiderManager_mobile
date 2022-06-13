@@ -4,6 +4,9 @@ import static com.app.spidermanager.validation.ErrorMessages.zero_value_message;
 
 import android.widget.TextView;
 
+/**
+ * Валидирует строку на равенство символу "0"
+ */
 public class NotZeroValidator extends TextValidator{
     public NotZeroValidator(TextView textView) {
         super(textView);

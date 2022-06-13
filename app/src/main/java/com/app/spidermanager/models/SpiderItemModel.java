@@ -12,13 +12,13 @@ public class SpiderItemModel extends ModelWithId{
     // Фото
     private Drawable photo;
     // Пол
-    private Boolean sex;
+    private int sex;
     // Возраст
     private int age;
 
     public SpiderItemModel(int id, String name, int age, String type,
                            String feedingDate,
-                           String moltingDate, Boolean sex) {
+                           String moltingDate, int sex) {
         super(id);
         this.name = name;
         this.age = age;
@@ -31,7 +31,7 @@ public class SpiderItemModel extends ModelWithId{
 
     public SpiderItemModel(int id, String name, int age, String type,
                            String feedingDate, Drawable photo,
-                           String moltingDate, Boolean sex) {
+                           String moltingDate, int sex) {
         super(id);
         this.name = name;
         this.age = age;
@@ -82,11 +82,11 @@ public class SpiderItemModel extends ModelWithId{
         this.photo = photo;
     }
 
-    public Boolean getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(Boolean sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 
