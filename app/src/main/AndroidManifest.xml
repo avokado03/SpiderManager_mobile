@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpiderManager"
         tools:targetApi="31">
+        <receiver android:name="com.app.notifications.NotificationService"/>
         <activity
             android:name="com.app.spidermanager.MainActivity"
             android:exported="true"

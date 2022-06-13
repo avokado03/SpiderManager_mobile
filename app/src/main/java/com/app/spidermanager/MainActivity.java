@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.app.AlarmManager;
 import android.os.Bundle;
 
 import com.app.db.DbHelper;
 import com.app.spidermanager.utils.DialogUtils;
 import com.app.spidermanager.utils.Utils;
+import com.app.notifications.NotificationService;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -34,6 +36,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 /**
  * Главная активность
@@ -67,6 +70,16 @@ public class MainActivity extends AppCompatActivity {
 
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
+        AlarmManager manager = (AlarmManager)getSystemService(
+                ALARM_SERVICE);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.add(Calendar.SECOND, 10);
+        long time = calendar.getTimeInMillis();
+
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, time, 1000*60, NotificationService.getPendingIntent(this));
     }
 
 
