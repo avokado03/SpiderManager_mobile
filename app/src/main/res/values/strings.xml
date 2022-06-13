@@ -33,6 +33,9 @@
     <string name="confirm_dialog_accept">Да</string>
     <string name="confirm_dialog_decline">Нет</string>
     <string name="default_id_text">id</string>
+    <string name="about_description">Приложение разработано для арахнокиперов и позволяет удобно хранить информацию о питомцах.\n\nОно снабжено системой оповещения, которая поможет не забыть про кормление паука.</string>
+    <string name="about_dev">Программу разработала Балашова А.В., группа Б1-ИФСТипу-31. 2022г.</string>
+
 
     <string-array name="sex_variants">
         <item>Мужской</item>
