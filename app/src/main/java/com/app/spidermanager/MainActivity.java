@@ -1,40 +1,17 @@
 package com.app.spidermanager;
 
-import android.Manifest;
-import android.app.Dialog;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.app.AlarmManager;
 import android.os.Bundle;
-
 import com.app.db.DbHelper;
-import com.app.spidermanager.utils.DialogUtils;
-import com.app.spidermanager.utils.Utils;
 import com.app.notifications.NotificationService;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.provider.MediaStore;
-import android.util.Log;
-
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import com.app.spidermanager.databinding.ActivityMainBinding;
-
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-
 import java.io.IOException;
 import java.util.Calendar;
 
