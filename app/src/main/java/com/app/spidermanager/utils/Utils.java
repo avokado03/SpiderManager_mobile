@@ -75,6 +75,14 @@ public class Utils {
     }
 
     /**
+     * Получение даты без времени
+     */
+    public static Date dateWithoutTime (Date date){
+        String formatted = dateToString(date);
+        return stringToDate(formatted);
+    }
+
+    /**
      * Преобразование строки формата дд.мм.гггг в дату
      */
     public static Date stringToDate(String value) {

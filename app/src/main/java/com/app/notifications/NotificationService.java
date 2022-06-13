@@ -1,5 +1,6 @@
 package com.app.notifications;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -8,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
-import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 import com.app.db.entities.Notification;
@@ -16,6 +16,7 @@ import com.app.db.entities.Spider;
 import com.app.spidermanager.R;
 import com.app.spidermanager.repositories.NotificationsRepository;
 import com.app.spidermanager.repositories.SpidersRepository;
+import com.app.spidermanager.utils.Utils;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -26,7 +27,6 @@ import java.util.List;
  */
 public class NotificationService extends BroadcastReceiver {
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onReceive(Context context, Intent intent) {
         NotificationsRepository notificationsRepository = new NotificationsRepository(context);
@@ -42,9 +42,8 @@ public class NotificationService extends BroadcastReceiver {
                 calendar.add(Calendar.DATE, notification.getPeriod());
                 Date needFeedingDate = calendar.getTime();
 
-               if (currentDate.getTime() >= needFeedingDate.getTime()) {
+               if (Utils.dateWithoutTime(currentDate).getTime() >= needFeedingDate.getTime()) {
                     notify(context, spider);
-
                    spider.setLastFeedingDate(new Date());
                    spidersRepository.update(spider);
                 }
@@ -80,6 +79,7 @@ public class NotificationService extends BroadcastReceiver {
     /**
      * Возвращает намерение, отложенное во времени
      */
+    @SuppressLint("UnspecifiedImmutableFlag")
     public static PendingIntent getPendingIntent(Context context) {
         Intent action = new Intent(context, NotificationService.class);
         return PendingIntent.getBroadcast(context, 1, action, 0);
